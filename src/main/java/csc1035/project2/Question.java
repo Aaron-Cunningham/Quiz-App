@@ -1,7 +1,16 @@
 package csc1035.project2;
 
+import javax.persistence.*;
+
 public class Question {
-    String question, category, answer;
+
+    private String question;
+
+    private String category;
+
+    private String answer;
+
+
 
     public String getQuestion() {
         return question;
