@@ -74,18 +74,5 @@ public class Quiz {
         this.ID = ID;
     }
 
-    public static void main(String[] args) {
-        Quiz Math = new Quiz("Math", "CSC1031 Quiz", "Medium", 1);
-        Quiz architecture = new Quiz("Computer architecture", "CSC1032 Quiz", "Hard", 2);
-        Quiz databases = new Quiz("Databases", "CSC1033 Quiz", "Medium", 3);
-        Quiz programming = new Quiz("Programming", "CSC1036 Quiz", "Medium", 4);
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        session.beginTransaction();
-        session.save(Math);
-        session.save(architecture);
-        session.save(databases);
-        session.save(programming);
-        session.getTransaction().commit();
-        session.close();
-    }
+
 }
