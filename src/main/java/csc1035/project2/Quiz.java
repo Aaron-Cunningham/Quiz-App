@@ -42,13 +42,13 @@ public class Quiz {
         this.topic = topic;
     }
 
-//    public ArrayList<Question> getQuestions() {
-//        return questions;
-//    }
-//
-//    public void setQuestions(ArrayList<Question> questions) {
-//        this.questions = questions;
-//    }
+    public List<Question> getQuestions() {
+        return questions;
+    }
+
+    public void setQuestions(ArrayList<Question> questions) {
+        this.questions = questions;
+    }
 
     public String getName() {
         return name;
