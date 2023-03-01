@@ -15,11 +15,14 @@ public class Quiz {
 
     private ArrayList<Question> questions;
 
-    public Quiz(String topic, ArrayList<Question> questions, String name, String difficulty) {
+    private int id;
+
+    public Quiz(String topic, ArrayList<Question> questions, String name, String difficulty, int id) {
         this.topic = topic;
         this.questions = questions;
         this.name = name;
         this.difficulty = difficulty;
+        this.id = id;
     }
 
     public String getTopic() {
@@ -52,5 +55,13 @@ public class Quiz {
 
     public void setDifficulty(String difficulty) {
         this.difficulty = difficulty;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
