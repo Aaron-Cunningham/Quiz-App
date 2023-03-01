@@ -1,25 +1,15 @@
 package csc1035.project2;
 
 import javax.persistence.*;
-@Entity(name = "Question")
+
 public class Question {
-    @Id
-    @Column
-    private int ID;
-    @Column
+
     private String question;
-    @Column
+
     private String category;
-    @Column
+
     private String answer;
 
-    @ManyToOne
-    @JoinColumn(nullable = false)
-    private Quiz quiz;
-
-    public Question() {
-
-    }
 
 
     public String getQuestion() {
@@ -46,14 +36,11 @@ public class Question {
         this.answer = answer;
     }
 
-    public Question(int ID, String question, String category, String answer) {
+    public Question(String question, String category, String answer) {
         this.question = question;
         this.category = category;
         this.answer = answer;
-        this.ID = ID;
 
 
     }
-
-
 }
