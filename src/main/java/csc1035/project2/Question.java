@@ -10,6 +10,8 @@ public class Question {
 
     private String answer;
 
+    private int quizId;
+
 
 
     public String getQuestion() {
@@ -34,6 +36,14 @@ public class Question {
 
     public void setAnswer(String answer) {
         this.answer = answer;
+    }
+
+    public int getQuizId() {
+        return quizId;
+    }
+
+    public void setQuizId(int quizId) {
+        this.quizId = quizId;
     }
 
     public Question(String question, String category, String answer) {
