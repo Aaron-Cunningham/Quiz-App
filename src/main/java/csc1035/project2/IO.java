@@ -3,6 +3,7 @@ package csc1035.project2;
 import java.util.Scanner;
 
 public class IO {
+
     public static void main(String[] args) {
         new IO().IOSystem();
     }
@@ -10,11 +11,12 @@ public class IO {
 
         public void IOSystem(){
         Scanner sc = new Scanner(System.in);
+        QuizStore qs = new QuizStore();
 
         int option;
         do{
             System.out.println("Choose an option: \n" +
-                    "1: \n" +
+                    "1: Add a quiz\n" +
                     "2: \n" +
                     "3: \n" +
                     "4: \n" +
@@ -28,7 +30,7 @@ public class IO {
             option = sc.nextInt();
             switch(option){
                 case 1 -> {
-                    System.out.println(" ");
+                    qs.addQuiz();
                 }
                 case 2 -> {
                     System.out.println("  ");
