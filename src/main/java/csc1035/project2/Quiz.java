@@ -1,28 +1,36 @@
 package csc1035.project2;
 
+import org.hibernate.Session;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 
 
-
+@Entity
+@Table(name = "Quiz")
 public class Quiz {
-
+    @Id
+    @Column
+    private int ID;
+    @Column
     private String topic;
-
+    @Column
     private String name;
-
+    @Column
     private String difficulty;
+    @OneToMany(mappedBy = "quiz")
+    private ArrayList<Question> questions = new ArrayList<>();
 
-    private ArrayList<Question> questions;
 
-    private int id;
-
-    public Quiz(String topic, ArrayList<Question> questions, String name, String difficulty, int id) {
+    public Quiz(String topic, String name, String difficulty, int ID) {
         this.topic = topic;
-        this.questions = questions;
         this.name = name;
         this.difficulty = difficulty;
-        this.id = id;
+        this.ID = ID;
+    }
+
+    public Quiz() {
+
     }
 
     public String getTopic() {
@@ -58,10 +66,20 @@ public class Quiz {
     }
 
     public int getId() {
-        return id;
+        return ID;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.ID = ID;
+    }
+
+    public static void main(String[] args) {
+
+        Quiz q = new Quiz("Maths", "CSC1031 quiz", "Medium", 1);
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        session.save(q);
+        session.getTransaction().commit();
+        session.close();
     }
 }
