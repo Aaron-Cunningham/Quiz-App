@@ -1,8 +1,5 @@
 package csc1035.project2;
-
 import org.hibernate.Session;
-
-import javax.persistence.Id;
 import javax.persistence.Query;
 import java.util.List;
 import java.util.Scanner;
