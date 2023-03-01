@@ -4,6 +4,7 @@ import org.hibernate.Session;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -19,7 +20,7 @@ public class Quiz {
     @Column
     private String difficulty;
     @OneToMany(mappedBy = "quiz")
-    private ArrayList<Question> questions = new ArrayList<>();
+    private List<Question> questions;
 
 
     public Quiz(String topic, String name, String difficulty, int ID) {
@@ -41,13 +42,13 @@ public class Quiz {
         this.topic = topic;
     }
 
-    public ArrayList<Question> getQuestions() {
-        return questions;
-    }
-
-    public void setQuestions(ArrayList<Question> questions) {
-        this.questions = questions;
-    }
+//    public ArrayList<Question> getQuestions() {
+//        return questions;
+//    }
+//
+//    public void setQuestions(ArrayList<Question> questions) {
+//        this.questions = questions;
+//    }
 
     public String getName() {
         return name;
@@ -74,11 +75,16 @@ public class Quiz {
     }
 
     public static void main(String[] args) {
-
-        Quiz q = new Quiz("Maths", "CSC1031 quiz", "Medium", 1);
+        Quiz Math = new Quiz("Math", "CSC1031 Quiz", "Medium", 1);
+        Quiz architecture = new Quiz("Computer architecture", "CSC1032 Quiz", "Hard", 2);
+        Quiz databases = new Quiz("Databases", "CSC1033 Quiz", "Medium", 3);
+        Quiz programming = new Quiz("Programming", "CSC1036 Quiz", "Medium", 4);
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
-        session.save(q);
+        session.save(Math);
+        session.save(architecture);
+        session.save(databases);
+        session.save(programming);
         session.getTransaction().commit();
         session.close();
     }
