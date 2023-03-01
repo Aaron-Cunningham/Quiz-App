@@ -16,6 +16,7 @@
 
         <mapping class="csc1035.project2.Question" /> <!--- Add a new mapping class for a new table in the database -->
         <mapping class="csc1035.project2.Quiz" />
+        <mapping class="csc1035.project2.addingData" />
 
 
     </session-factory>
