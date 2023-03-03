@@ -28,14 +28,11 @@ public class QuizStore {
             io.IOSystem();
         }
 
-        topic.toLowerCase();
         System.out.println("Enter the name of the quiz");
         String name = sc.nextLine();
         System.out.println("Enter the difficulty");
         String difficulty = sc.nextLine();
-        System.out.println("Enter the ID for your quiz");
-        ID = sc.nextInt();
-        Quiz quiz = new Quiz(topic, name, difficulty, ID);
+        Quiz quiz = new Quiz(topic, name, difficulty);
         session.save(quiz);
         session.getTransaction().commit();
         session.close();
