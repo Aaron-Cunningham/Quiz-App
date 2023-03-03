@@ -6,10 +6,10 @@ public class addingData {
     public static void main(String[] args) {
 
         //Quizzes
-        Quiz Math = new Quiz("Math", "CSC1031 Quiz", "Medium", 1);
-        Quiz architecture = new Quiz("Computer architecture", "CSC1032 Quiz", "Hard", 2);
-        Quiz databases = new Quiz("Databases", "CSC1033 Quiz", "Medium", 3);
-        Quiz programming = new Quiz("Programming", "CSC1036 Quiz", "Medium", 4);
+        Quiz Math = new Quiz("Math", "CSC1031 Quiz", "Medium");
+        Quiz architecture = new Quiz("Computer architecture", "CSC1032 Quiz", "Hard");
+        Quiz databases = new Quiz("Databases", "CSC1033 Quiz", "Medium");
+        Quiz programming = new Quiz("Programming", "CSC1036 Quiz", "Medium");
 
         //Maths questions
         Question maths1 = new Question("What is the square root of 25?", "Maths", "5");
