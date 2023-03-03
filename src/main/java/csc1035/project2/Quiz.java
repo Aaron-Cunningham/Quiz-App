@@ -11,6 +11,7 @@ import java.util.List;
 @Table(name = "Quiz")
 public class Quiz {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column
     private int ID;
     @Column
@@ -23,7 +24,7 @@ public class Quiz {
     private List<Question> questions;
 
 
-    public Quiz(String topic, String name, String difficulty, int ID) {
+    public Quiz(String topic, String name, String difficulty) {
         this.topic = topic;
         this.name = name;
         this.difficulty = difficulty;
