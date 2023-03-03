@@ -9,7 +9,6 @@ public class QuizStore {
 
     public void addQuiz(){
         IO io = new IO();
-        int ID;
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         Scanner sc = new Scanner(System.in);
