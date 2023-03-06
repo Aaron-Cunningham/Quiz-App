@@ -2,13 +2,12 @@ package csc1035.project2;
 
 import org.hibernate.Session;
 
-import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import java.util.List;
 import java.util.Scanner;
 
 public class QuestionStore {
 
-    // addQuestion(question, category, answer, quizID)
     public void addQuestion() {
         IO io = new IO();
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -28,8 +27,9 @@ public class QuestionStore {
         answer = answer.toLowerCase(); // such that the answer entered converts to lower case characters
 
         System.out.println("\nEnter which of the following quizID's you would like to link this question with: ");
+
         // Get a list of existing quizIDs from the database
-        Query query = session.createQuery("SELECT DISTINCT quiz_id FROM Question ");
+        TypedQuery<Integer> query = session.createQuery("SELECT DISTINCT quiz_id FROM Question ", Integer.class);
         List<Integer> quizIDs = query.getResultList();
 
         // Print a list of existing quizIDs
@@ -42,8 +42,8 @@ public class QuestionStore {
         int quizID = sc.nextInt();
 
         // Check if quizID exists in the database
-        Query query1 = session.createQuery("FROM Question WHERE quiz_id = :quizID");
-        query1.setParameter("quizID", quizID);
+        TypedQuery<Question> query1 = session.createQuery("FROM Question WHERE quiz_id = :quiz_ID", Question.class);
+        query1.setParameter("quiz_ID", quizID);
         List<Question> quizList = query1.getResultList();
 
         if (quizList.isEmpty()) {
@@ -55,17 +55,10 @@ public class QuestionStore {
 
             session.save(Q);
             session.getTransaction().commit();
-            System.out.println("\nQuestion added successfully to quizID: " + quizID );
+            System.out.println("\nQuestion added successfully to quizID: " + quizID);
         }
+
         session.close();
-    }
-
-    public static void deleteQuestion() {
-
-    }
-
-    public static void updateQuestion() {
-
     }
 
 }
