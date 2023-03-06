@@ -24,14 +24,24 @@ public class QuestionStore {
 
         System.out.println("\nEnter the answer: ");
         String answer = sc.nextLine();
+        answer.toLowerCase();
 
         System.out.println("\nEnter which of the following quizID's you would like to link this question with: ");
+        // Get a list of existing quizIDs from the database
+        Query query = session.createQuery("SELECT DISTINCT quiz_id FROM Question ");
+        List<Integer> quizIDs = query.getResultList();
+
+        // Print a list of existing quizIDs
+        System.out.println("\nExisting quiz IDs:");
+        for (Integer id : quizIDs) {
+            System.out.println(id);
+        }
         int quizID = sc.nextInt();
 
         // Check if quizID exists in the database
-        Query query = session.createQuery("FROM Quiz WHERE questions = :quizID");
-        query.setParameter("quizID", quizID);
-        List<Quiz> quizList = query.getResultList();
+        Query query1 = session.createQuery("FROM Question WHERE quiz_id = :quizID");
+        query1.setParameter("quizID", quizID);
+        List<Quiz> quizList = query1.getResultList();
 
         if (quizList.isEmpty()) {
             System.out.println("\nError: Quiz with quizID " + quizID + " does not exist.");
