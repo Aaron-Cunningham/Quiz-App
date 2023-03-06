@@ -36,4 +36,12 @@ public class QuizStore {
         session.getTransaction().commit();
         session.close();
     }
+
+    public void deleteQuiz(){
+
+    }
+
+    public void updateQuiz(){
+
+    }
 }
