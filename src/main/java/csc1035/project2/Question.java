@@ -14,6 +14,8 @@
         private String category;
         @Column
         private String answer;
+        @Column
+        private int quiz_id;
 
         @ManyToOne
         @JoinColumn(nullable = false)
@@ -53,10 +55,12 @@
             this.answer = answer;
         }
 
-        public Question(String question, String category, String answer) {
+        public Question(String question, String category, String answer, int quiz_id) {
             this.question = question;
             this.category = category;
             this.answer = answer;
+            this.quiz_id = quiz_id;
+
 
 
         }
