@@ -18,13 +18,14 @@ public class QuestionStore {
 
         System.out.println("\nEnter the question: ");
         String question = sc.nextLine();
+        question = question.toLowerCase(); // such that the question entered converts to lower case characters
 
         System.out.println("\nEnter the category: ");
         String category = sc.nextLine();
 
         System.out.println("\nEnter the answer: ");
         String answer = sc.nextLine();
-        answer.toLowerCase();
+        answer = answer.toLowerCase(); // such that the answer entered converts to lower case characters
 
         System.out.println("\nEnter which of the following quizID's you would like to link this question with: ");
         // Get a list of existing quizIDs from the database
@@ -54,9 +55,8 @@ public class QuestionStore {
 
             session.save(Q);
             session.getTransaction().commit();
-            System.out.println("\nQuestion added successfully to quiz " + quizID + ".");
+            System.out.println("\nQuestion added successfully to quizID: " + quizID );
         }
-
         session.close();
     }
 
