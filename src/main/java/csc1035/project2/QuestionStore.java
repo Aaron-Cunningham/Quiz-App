@@ -9,6 +9,7 @@ import java.util.Scanner;
 public class QuestionStore {
 
     public void addQuestion() {
+
         IO io = new IO();
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
@@ -57,8 +58,12 @@ public class QuestionStore {
             session.getTransaction().commit();
             System.out.println("\nQuestion added successfully to quizID: " + quizID);
         }
-
         session.close();
     }
+    public void deleteQuestion() {
+        // Print out the list of questions associated with the quiz_ID
+        // Then select the questions that you would like to delete (maybe display the questionID with the question and then delete the question)
+    }
+
 
 }
