@@ -1,3 +1,4 @@
+
 package csc1035.project2;
 
 import org.hibernate.Session;
@@ -112,3 +113,4 @@ public class addingData {
         session.close();
     }
 }
+
