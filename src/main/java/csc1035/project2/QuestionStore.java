@@ -36,12 +36,14 @@ public class QuestionStore {
         for (Integer id : quizIDs) {
             System.out.println(id);
         }
+
+        // Asking the user to choose from the following quizID's
         int quizID = sc.nextInt();
 
         // Check if quizID exists in the database
         Query query1 = session.createQuery("FROM Question WHERE quiz_id = :quizID");
         query1.setParameter("quizID", quizID);
-        List<Quiz> quizList = query1.getResultList();
+        List<Question> quizList = query1.getResultList();
 
         if (quizList.isEmpty()) {
             System.out.println("\nError: Quiz with quizID " + quizID + " does not exist.");
