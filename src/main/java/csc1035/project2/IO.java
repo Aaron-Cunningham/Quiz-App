@@ -6,18 +6,20 @@ public class IO {
 
     public static void main(String[] args) {
         new IO().IOSystem();
+
     }
 
 
         public void IOSystem(){
         Scanner sc = new Scanner(System.in);
         QuizStore qs = new QuizStore();
+        QuestionStore QS = new QuestionStore();
 
         int option;
         do{
             System.out.println("Choose an option: \n" +
                     "1: Add a quiz\n" +
-                    "2: \n" +
+                    "2: Add a question\n" +
                     "3: \n" +
                     "4: \n" +
                     "5: ");
@@ -33,7 +35,9 @@ public class IO {
                     qs.addQuiz();
                 }
                 case 2 -> {
-                    System.out.println("  ");
+                    QS.addQuestion();
+
+
                 }
                 case 3 -> {
                     System.out.println("   ");
