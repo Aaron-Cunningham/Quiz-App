@@ -14,15 +14,26 @@
         private String category;
         @Column
         private String answer;
+
         @Column
         private int quiz_id;
 
         @ManyToOne
         @JoinColumn(nullable = false)
         Quiz quiz;
+
         public Question() {
 
         }
+
+        public int getID() {
+            return ID;
+        }
+
+        public int getQuiz_id() {
+            return quiz_id;
+        }
+
         public void setID(int ID) {
             this.ID = ID;
         }
@@ -37,6 +48,7 @@
 
         public void setQuestion(String question) {
             this.question = question;
+            question = question.toLowerCase();
         }
 
         public String getCategory() {
@@ -60,8 +72,5 @@
             this.category = category;
             this.answer = answer;
             this.quiz_id = quiz_id;
-
-
-
         }
     }
