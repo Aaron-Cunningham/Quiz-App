@@ -60,6 +60,11 @@ public class QuestionStore {
             } else {
                 Question Q = new Question(question, category, answer, quizID);
 
+                Q.setQuestion(question);
+                Q.setCategory(category);
+                Q.setAnswer(answer);
+                Q.setQuiz_id(quizID);
+
                 session.save(Q);
                 session.getTransaction().commit();
                 System.out.println("\nQuestion added successfully to quizID: " + quizID);
@@ -133,6 +138,14 @@ public class QuestionStore {
                 io.IOSystem();
             } else {
                 MCQ Q = new MCQ(question, category, answer1, answer2, answer3, actualAnswer, quizID);
+
+                Q.setQuestion(question);
+                Q.setCategory(category);
+                Q.setAnswer1(answer1);
+                Q.setAnswer2(answer2);
+                Q.setAnswer3(answer3);
+                Q.setActualAnswer(actualAnswer);
+                Q.setQuiz_id(quizID);
 
                 session.save(Q);
                 session.getTransaction().commit();

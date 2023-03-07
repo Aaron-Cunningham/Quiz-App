@@ -15,6 +15,7 @@ public class Question {
     @Column
     private String answer;
 
+
     @Column
     private int quiz_id;
 
@@ -24,6 +25,10 @@ public class Question {
 
     public Question() {
 
+    }
+
+    public void setQuiz_id(int quiz_id) {
+        this.quiz_id = quiz_id;
     }
 
     public int getID() {
