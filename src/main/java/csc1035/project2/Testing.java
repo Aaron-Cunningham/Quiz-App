@@ -46,6 +46,5 @@ public class Testing {
         }
         session.getTransaction().commit();
         session.close();
-
     }
 }
