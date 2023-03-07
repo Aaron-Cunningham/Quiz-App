@@ -38,7 +38,7 @@ public class IO {
                     QS.addSAQ();
                 }
                 case 3 -> {
-                    QS.deleteQuestion();
+                    QS.deleteSAQ();
                 }
                 case 4 -> {
                     QS.addMCQ();

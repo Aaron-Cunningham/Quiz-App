@@ -79,10 +79,13 @@ public class QuestionStore {
 
         System.out.println("Enter possible answer");
         String answer1 = sc.nextLine();
+
         System.out.println("Enter the next possible answer");
         String answer2 = sc.nextLine();
+
         System.out.println("Enter the final possible answer");
         String answer3 = sc.nextLine();
+
         System.out.println("\nEnter the actual answer: ");
         String actualAnswer = sc.nextLine();
         actualAnswer = actualAnswer.toLowerCase(); // such that the answer entered converts to lower case characters
@@ -121,10 +124,19 @@ public class QuestionStore {
         session.close();
 
     }
-    public void deleteQuestion() {
+    public void deleteSAQ() {
+        IO io = new IO();
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Enter the question that you would like to delete");
+
         // Print out the list of questions associated with the quiz_ID
         // Then select the questions that you would like to delete (maybe display the questionID with the question and then delete the question)
     }
+
 
     public void updateQuestion() {
 

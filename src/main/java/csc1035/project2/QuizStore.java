@@ -25,7 +25,7 @@ public class QuizStore {
             System.out.println("Enter the name of the quiz");
             String name = sc.nextLine();
             //Makes the topic lower case
-            name.toLowerCase();
+            name = name.toLowerCase();
             //Querying the database to check if name is already there
             String hql = "FROM Quiz WHERE name = :name";
             Query query = session.createQuery(hql);
