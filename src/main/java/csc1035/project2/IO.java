@@ -18,11 +18,11 @@ public class IO {
         int option;
         do{
             System.out.println("Choose an option: \n" +
-                    "1: Add a quiz\n" +
+                    "1: Add a Quiz\n" +
                     "2: Add a SAQ\n" +
                     "3: Delete a SAQ\n" +
                     "4: Add a MCQ" +
-                    "5: ");
+                    "5: Delete a MCQ");
 
             while (!sc.hasNextInt()){
                 System.out.println("Only enter a number");
@@ -43,9 +43,7 @@ public class IO {
                 case 4 -> {
                     QS.addMCQ();
                 }
-                case 5 -> {
-                    System.out.println("     ");
-                }
+                case 5 -> QS.deleteSAQ();
                 default -> option = 0;
             }
             IOSystem();

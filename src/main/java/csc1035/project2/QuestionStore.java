@@ -131,12 +131,55 @@ public class QuestionStore {
 
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Enter the question that you would like to delete");
+        System.out.println("Enter the question ID that you would like to delete (choose from the options provided below): ");
 
-        // Print out the list of questions associated with the quiz_ID
-        // Then select the questions that you would like to delete (maybe display the questionID with the question and then delete the question)
+        // Get a list of existing quizIDs from the database
+        TypedQuery<Question> query3 = session.createQuery("SELECT ID,question FROM Question ", Question.class);
+        List<Question> questions = query3.getResultList();
+
+        // Print a list of existing question ID and question (for question table)
+        System.out.println("\nExisting questions ID and questions:");
+        for (Question question : questions) {
+            System.out.println(question);
+        }
+
+        int question_ID = sc.nextInt();
+
+        // Check if the question ID is in the list of questions
+        boolean found = false;
+        for (Question question : questions) {
+            if (question.getID() == question_ID) {
+                found = true;
+                break;
+            }
+        }
+
+        // If the question ID is not found, prompt the user with an error message
+        if (!found) {
+            System.out.println("Error: There is no question with ID " + question_ID);
+            return;
+        }
+
+        // Otherwise, delete the question with the given ID
+        TypedQuery<Question> query4 = session.createQuery("delete from Question where ID = :id", Question.class);
+        query4.setParameter("id", question_ID);
+        int result = query4.executeUpdate();
+        System.out.println(result + " question deleted.");
+
+        // Commit the transaction and close the session
+        session.getTransaction().commit();
+        session.close();
     }
 
+        // if the question_ID is matched then delete the question
+        // if the question_ID typed is not there than prompt an error saying that there is no such question_ID
+        // Print out the list and then simply just
+        // Print out the list of questions associated with the quiz_ID
+        // Then select the questions that you would like to delete (maybe display the questionID with the question and then delete the question)
+
+    public void deleteMCQ() {
+
+    }
 
     public void updateQuestion() {
 
