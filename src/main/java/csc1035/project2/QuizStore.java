@@ -18,7 +18,9 @@ public class QuizStore {
     public void addQuiz(){
         IO io = new IO();
         Session session = HibernateUtil.getSessionFactory().openSession();
+
         try {
+            session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
             Scanner sc = new Scanner(System.in);
             //Asks user for name of the quiz
@@ -55,6 +57,7 @@ public class QuizStore {
             e.printStackTrace();
         }finally {
             //Close session
+            assert session != null;
             session.close();
         }
     }

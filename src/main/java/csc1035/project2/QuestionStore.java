@@ -12,7 +12,8 @@ public class QuestionStore {
     public void addSAQ() {
 
         IO IO = new IO();
-        Session session = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
@@ -63,12 +64,14 @@ public class QuestionStore {
                 System.out.println("\nQuestion added successfully to quizID: " + quizID);
             }
             session.close();
-        } catch (HibernateException e){
+        }
+
+        catch (HibernateException e){
             //if error roll back
             if(session!=null) session.getTransaction().rollback();
             e.printStackTrace();
 
-        }finally {
+        } finally {
             //Close session
             assert session != null;
             session.close();
@@ -78,7 +81,7 @@ public class QuestionStore {
     public void addMCQ(){
 
         IO io = new IO();
-        Session session = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
@@ -151,7 +154,7 @@ public class QuestionStore {
     }
     public void deleteSAQ() {
         IO io = new IO();
-        Session session = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
 
         try {
             session = HibernateUtil.getSessionFactory().openSession();
@@ -220,8 +223,7 @@ public class QuestionStore {
 
     public void deleteMCQ() {
         IO io = new IO();
-        Session session = null;
-
+        Session session = HibernateUtil.getSessionFactory().openSession();
 
         try {
             session = HibernateUtil.getSessionFactory().openSession();
