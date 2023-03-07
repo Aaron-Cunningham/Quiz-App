@@ -159,18 +159,17 @@ public class QuestionStore {
             System.out.println("Error: There is no question with ID " + question_ID);
             session.close();
             io.IOSystem();
-        } else {
-            // Otherwise, delete the question with the given ID
-            TypedQuery<Question> query1 = session.createQuery("delete from Question where ID = :id", Question.class);
-            query1.setParameter("id", question_ID);
-            int result = query1.executeUpdate();
-            System.out.println(result + " question deleted.");
-
-            // Commit the transaction and close the session
-            session.getTransaction().commit();
-            session.close();
         }
 
+        // Otherwise, delete the question with the given ID
+        TypedQuery<Question> query1 = session.createQuery("delete from Question where ID = :id", Question.class);
+        query1.setParameter("id", question_ID);
+        int result = query1.executeUpdate();
+        System.out.println(result + " question deleted.");
+
+        // Commit the transaction and close the session
+        session.getTransaction().commit();
+        session.close();
     }
 
         // if the question_ID is matched then delete the question
@@ -180,12 +179,50 @@ public class QuestionStore {
         // Then select the questions that you would like to delete (maybe display the questionID with the question and then delete the question)
 
     public void deleteMCQ() {
+        IO io = new IO();
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
 
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Enter the question ID that you would like to delete (choose from the options provided below): ");
+
+        // Get a list of existing quizIDs from the database
+        TypedQuery<MCQ> query = session.createQuery("SELECT ID,question FROM MCQ ", MCQ.class);
+        List<MCQ> MCQs = query.getResultList();
+
+        // Print a list of existing question ID and question (for question table)
+        System.out.println("\nExisting MCQ ID and questions:");
+        for (MCQ mcq : MCQs) {
+            System.out.println(mcq);
+        }
+
+        int mcq_ID = sc.nextInt();
+
+        // Check if the question ID is in the list of questions
+        boolean found = false;
+        for (MCQ mcq : MCQs) {
+            if (mcq.getID() == mcq_ID) {
+                found = true;
+                break;
+            }
+        }
+
+        // If the question ID is not found, prompt the user with an error message
+        if (!found) {
+            System.out.println("Error: There is no MCQ  with ID " + mcq_ID);
+            session.close();
+            io.IOSystem();
+        }
+        // Otherwise, delete the question with the given ID
+        TypedQuery<MCQ> query1 = session.createQuery("delete from MCQ where id = :id", MCQ.class);
+        query1.setParameter("id", mcq_ID);
+        int result = query1.executeUpdate();
+        System.out.println(result + " MCQ deleted.");
+
+        // Commit the transaction and close the session
+        session.getTransaction().commit();
+        session.close();
     }
-
-    public void updateQuestion() {
-
-    }
-
 
 }

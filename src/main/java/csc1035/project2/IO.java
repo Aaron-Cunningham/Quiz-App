@@ -43,7 +43,7 @@ public class IO {
                 case 4 -> {
                     QS.addMCQ();
                 }
-                case 5 -> QS.deleteSAQ();
+                case 5 -> QS.deleteMCQ();
                 default -> option = 0;
             }
             IOSystem();
