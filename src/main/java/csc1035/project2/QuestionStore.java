@@ -4,6 +4,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
 import javax.persistence.TypedQuery;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -227,22 +228,22 @@ public class QuestionStore {
             System.out.println("Enter the question ID that you would like to delete (choose from the options provided below): ");
 
             // Get a list of existing quizIDs from the database
-
-            TypedQuery<MCQ> query = session.createQuery("SELECT ID,question FROM MCQ ", MCQ.class);
-            List<MCQ> MCQs = query.getResultList();
+            TypedQuery<Object[]> query = session.createQuery("SELECT ID,question FROM MCQ ", Object[].class);
+            List<Object[]> MCQs = query.getResultList();
 
             // Print a list of existing question ID and question (for question table)
             System.out.println("\nExisting MCQ ID and questions:");
-            for (MCQ mcq : MCQs) {
-                System.out.println(mcq);
+            for (Object[] mcq : MCQs) {
+                System.out.println(Arrays.toString(mcq));
             }
 
+            System.out.println("Enter an appropriate MCQ ID that you would like to delete: ");
             int mcq_ID = sc.nextInt();
 
             // Check if the question ID is in the list of questions
             boolean found = false;
-            for (MCQ mcq : MCQs) {
-                if (mcq.getID() == mcq_ID) {
+            for (Object[] mcq : MCQs) {
+                if ((int) mcq[0] == mcq_ID) {
                     found = true;
                     break;
                 }
@@ -255,7 +256,7 @@ public class QuestionStore {
                 io.IOSystem();
             }
             // Otherwise, delete the question with the given ID
-            TypedQuery<MCQ> query1 = session.createQuery("delete from MCQ where id = :id", MCQ.class);
+            TypedQuery query1 = session.createQuery("delete from MCQ where id = :id");
             query1.setParameter("id", mcq_ID);
             int result = query1.executeUpdate();
             System.out.println(result + " MCQ deleted.");
