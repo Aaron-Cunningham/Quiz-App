@@ -10,7 +10,6 @@ public class IO {
 
     }
 
-
         public void IOSystem(){
         Scanner sc = new Scanner(System.in);
         QuizStore qs = new QuizStore();
@@ -37,8 +36,6 @@ public class IO {
                 }
                 case 2 -> {
                     QS.addQuestion();
-
-
                 }
                 case 3 -> {
                     System.out.println("   ");
