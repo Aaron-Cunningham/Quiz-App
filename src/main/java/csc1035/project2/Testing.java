@@ -33,11 +33,19 @@ public class Testing {
             assert questionscan != null;
             if (!questionscan.hasNextLine()) break;
             List<String> arguments = Arrays.asList(questionscan.nextLine().split(","));
-            questionsList.add(new Question(arguments.get(0), arguments.get(1), arguments.get(2)));
+            questionsList.add(new Question(arguments.get(0), arguments.get(1), arguments.get(2), Integer.parseInt(arguments.get(3))));
         }
 
-        for (Question question : questionsList) {
-            System.out.println(question.getQuestion());
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        for (Quiz quiz : quizzesList) {
+            session.save(quiz);
         }
+        for (Question question : questionsList) {
+            session.save(question);
+        }
+        session.getTransaction().commit();
+        session.close();
+
     }
 }

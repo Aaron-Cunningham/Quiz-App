@@ -13,27 +13,27 @@ public class addingData {
         Quiz programming = new Quiz("Programming", "CSC1036 Quiz", "Medium");
 
         //Maths questions
-        Question maths1 = new Question("What is the square root of 25?", "Maths", "5");
-        Question maths2 = new Question("What is the value of x in the equation 2x + 5 = 11?", "Maths", "3");
-        Question maths3 = new Question("Simplify the expression 5a+2b-3a-4b", "Maths", "2a-2b");
+        Question maths1 = new Question("What is the square root of 25?", "Maths", "5", 1);
+        Question maths2 = new Question("What is the value of x in the equation 2x + 5 = 11?", "Maths", "3", 1);
+        Question maths3 = new Question("Simplify the expression 5a+2b-3a-4b", "Maths", "2a-2b", 1);
 
         //Architecture questions
-        Question architecture1 = new Question("What is this binary number 0001?", "Architecture", "1");
-        Question architecture2 = new Question("What is the main memory of a computer called?", "Architecture", "RAM");
-        Question architecture3 = new Question("What is the arithmetic logic unit responsible for?", "Architecture", "Calculations");
-        Question architecture4 = new Question("What does the acronym CPU stand for? ", "Architecture", "Central Processing Unit");
+        Question architecture1 = new Question("What is this binary number 0001?", "Architecture", "1", 2);
+        Question architecture2 = new Question("What is the main memory of a computer called?", "Architecture", "RAM", 2);
+        Question architecture3 = new Question("What is the arithmetic logic unit responsible for?", "Architecture", "Calculations", 2);
+        Question architecture4 = new Question("What does the acronym CPU stand for? ", "Architecture", "Central Processing Unit", 2);
 
         //Databases questions
-        Question database1 = new Question("What type of database stores data in tables?", "Databases", "Relational");
-        Question database2 = new Question("What is the process of finding specific data in a database called?", "Databases", "Querying");
-        Question database3 = new Question("What is the unique identifier for each record in a database table called?", "Databases", "Primary key");
-        Question database4 = new Question("What is the process of combining data from multiple tables called?", "Databases", "Joining");
+        Question database1 = new Question("What type of database stores data in tables?", "Databases", "Relational", 3);
+        Question database2 = new Question("What is the process of finding specific data in a database called?", "Databases", "Querying", 3);
+        Question database3 = new Question("What is the unique identifier for each record in a database table called?", "Databases", "Primary key", 3);
+        Question database4 = new Question("What is the process of combining data from multiple tables called?", "Databases", "Joining", 3);
 
         //Programming questions
-        Question programming1 = new Question("What is the most popular programming language as of 2023", "Programming", "Python");
-        Question programming2 = new Question("What is the process of finding and fixing errors in code called?", "Programming", "Debugging");
-        Question programming3 = new Question("What is the term used to describe a piece of reusable code?", "Programming", "Function");
-        Question programming4 = new Question("What is the act of converting source code into machine-readable code called?", "Programming", "Compiling");
+        Question programming1 = new Question("What is the most popular programming language as of 2023", "Programming", "Python", 4);
+        Question programming2 = new Question("What is the process of finding and fixing errors in code called?", "Programming", "Debugging", 4);
+        Question programming3 = new Question("What is the term used to describe a piece of reusable code?", "Programming", "Function", 4);
+        Question programming4 = new Question("What is the act of converting source code into machine-readable code called?", "Programming", "Compiling", 4);
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         /*

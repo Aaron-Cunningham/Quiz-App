@@ -55,12 +55,11 @@
             this.answer = answer;
         }
 
-        public Question(String question, String category, String answer) {
+        public Question(String question, String category, String answer, int quiz_id) {
             this.question = question;
             this.category = category;
             this.answer = answer;
-            //this.quiz_id = quiz_id;
-            // commented out so it doesn't error while im testing other stuff
+            this.quiz_id = quiz_id;
 
 
         }
