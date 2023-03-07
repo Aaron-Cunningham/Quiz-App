@@ -64,11 +64,9 @@ public class QuestionStore {
                 System.out.println("\nQuestion added successfully to quizID: " + quizID);
             }
             session.close();
-        }
-
-        catch (HibernateException e){
+        } catch (HibernateException e) {
             //if error roll back
-            if(session!=null) session.getTransaction().rollback();
+            if (session != null) session.getTransaction().rollback();
             e.printStackTrace();
 
         } finally {
@@ -78,7 +76,7 @@ public class QuestionStore {
         }
     }
 
-    public void addMCQ(){
+    public void addMCQ() {
 
         IO io = new IO();
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -141,10 +139,10 @@ public class QuestionStore {
             }
             session.close();
 
-        } catch (HibernateException e){
-        //if error roll back
-        if(session!=null) session.getTransaction().rollback();
-        e.printStackTrace();
+        } catch (HibernateException e) {
+            //if error roll back
+            if (session != null) session.getTransaction().rollback();
+            e.printStackTrace();
 
         } finally {
             //Close session
@@ -152,34 +150,34 @@ public class QuestionStore {
             session.close();
         }
     }
+
     public void deleteSAQ() {
         IO io = new IO();
         Session session = HibernateUtil.getSessionFactory().openSession();
 
         try {
-            session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
 
             Scanner sc = new Scanner(System.in);
 
             System.out.println("Enter the question ID that you would like to delete (choose from the options provided below): ");
 
-            // Get a list of existing quizIDs from the database
-            TypedQuery<Question> query = session.createQuery("SELECT ID,question FROM Question ", Question.class);
-            List<Question> questions = query.getResultList();
+            // Get a list of existing questions from the database
+            TypedQuery<Object[]> query = session.createQuery("SELECT q.ID, q.question FROM Question q", Object[].class);
+            List<Object[]> questions = query.getResultList();
 
-            // Print a list of existing question ID and question (for question table)
-            System.out.println("\nExisting questions ID and questions:");
-            for (Question question : questions) {
-                System.out.println(question);
+            // Print a list of existing question ID and question text
+            System.out.println("\nExisting questions:");
+            for (Object[] question : questions) {
+                System.out.println("ID: " + question[0] + ", question: " + question[1]);
             }
 
             int question_ID = sc.nextInt();
 
             // Check if the question ID is in the list of questions
             boolean found = false;
-            for (Question question : questions) {
-                if (question.getID() == question_ID) {
+            for (Object[] question : questions) {
+                if ((int) question[0] == question_ID) {
                     found = true;
                     break;
                 }
@@ -193,7 +191,7 @@ public class QuestionStore {
             }
 
             // Otherwise, delete the question with the given ID
-            TypedQuery<Question> query1 = session.createQuery("delete from Question where ID = :id", Question.class);
+            TypedQuery query1 = session.createQuery("delete from Question where ID = :id");
             query1.setParameter("id", question_ID);
             int result = query1.executeUpdate();
             System.out.println(result + " question deleted.");
@@ -204,7 +202,7 @@ public class QuestionStore {
 
         } catch (HibernateException e) {
             //if error roll back
-            if (session != null) session.getTransaction().rollback();
+            session.getTransaction().rollback();
             e.printStackTrace();
 
         } finally {
@@ -214,12 +212,6 @@ public class QuestionStore {
 
         }
     }
-
-        // if the question_ID is matched then delete the question
-        // if the question_ID typed is not there than prompt an error saying that there is no such question_ID
-        // Print out the list and then simply just
-        // Print out the list of questions associated with the quiz_ID
-        // Then select the questions that you would like to delete (maybe display the questionID with the question and then delete the question)
 
     public void deleteMCQ() {
         IO io = new IO();
@@ -235,6 +227,7 @@ public class QuestionStore {
             System.out.println("Enter the question ID that you would like to delete (choose from the options provided below): ");
 
             // Get a list of existing quizIDs from the database
+
             TypedQuery<MCQ> query = session.createQuery("SELECT ID,question FROM MCQ ", MCQ.class);
             List<MCQ> MCQs = query.getResultList();
 

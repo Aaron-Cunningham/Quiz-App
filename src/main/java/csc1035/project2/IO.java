@@ -21,8 +21,8 @@ public class IO {
                     "1: Add a Quiz\n" +
                     "2: Add a SAQ\n" +
                     "3: Delete a SAQ\n" +
-                    "4: Add a MCQ" +
-                    "5: Delete a MCQ");
+                    "4: Add a MCQ\n" +
+                    "5: Delete a MCQ\n");
 
             while (!sc.hasNextInt()){
                 System.out.println("Only enter a number");
