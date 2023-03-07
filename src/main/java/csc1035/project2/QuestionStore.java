@@ -20,6 +20,7 @@ public class QuestionStore {
         String question = sc.nextLine();
         question = question.toLowerCase(); // such that the question entered converts to lower case characters
 
+        // The category can only be Maths, Architecture, Databases and Programming
         System.out.println("\nEnter the category: ");
         String category = sc.nextLine();
 
@@ -29,8 +30,8 @@ public class QuestionStore {
 
         System.out.println("\nEnter which of the following quizID's you would like to link this question with: ");
 
-        // Get a list of existing quizIDs from the database
-        TypedQuery<Integer> query = session.createQuery("SELECT DISTINCT quiz_id FROM Question ", Integer.class);
+        // Get a list of existing quizIDs from the database (tale Quiz)
+        TypedQuery<Integer> query = session.createQuery("SELECT DISTINCT ID FROM Quiz ", Integer.class);
         List<Integer> quizIDs = query.getResultList();
 
         // Print a list of existing quizIDs
@@ -42,10 +43,10 @@ public class QuestionStore {
         // Asking the user to choose from the following quizID's
         int quizID = sc.nextInt();
 
-        // Check if quizID exists in the database
-        TypedQuery<Question> query1 = session.createQuery("FROM Question WHERE quiz_id = :quiz_ID", Question.class);
-        query1.setParameter("quiz_ID", quizID);
-        List<Question> quizList = query1.getResultList();
+        // Check if quizID exists in the database (table Quiz)
+        TypedQuery<Quiz> query1 = session.createQuery("FROM Quiz WHERE ID = :ID", Quiz.class);
+        query1.setParameter("ID", quizID);
+        List<Quiz> quizList = query1.getResultList();
 
         if (quizList.isEmpty()) {
             System.out.println("\nError: Quiz with quizID " + quizID + " does not exist.");
@@ -63,6 +64,10 @@ public class QuestionStore {
     public void deleteQuestion() {
         // Print out the list of questions associated with the quiz_ID
         // Then select the questions that you would like to delete (maybe display the questionID with the question and then delete the question)
+    }
+
+    public void updateQuestion() {
+
     }
 
 

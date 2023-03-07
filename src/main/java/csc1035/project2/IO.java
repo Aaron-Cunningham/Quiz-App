@@ -20,7 +20,7 @@ public class IO {
             System.out.println("Choose an option: \n" +
                     "1: Add a quiz\n" +
                     "2: Add a question\n" +
-                    "3: \n" +
+                    "3: Delete a question\n" +
                     "4: \n" +
                     "5: ");
 
@@ -38,7 +38,7 @@ public class IO {
                     QS.addQuestion();
                 }
                 case 3 -> {
-                    System.out.println("   ");
+                    QS.deleteQuestion();
                 }
                 case 4 -> {
                     System.out.println("    ");
