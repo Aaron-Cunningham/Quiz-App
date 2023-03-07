@@ -27,6 +27,10 @@ public class Question {
 
     }
 
+    public Quiz getQuiz() {
+        return quiz;
+    }
+
     public void setQuiz_id(int quiz_id) {
         this.quiz_id = quiz_id;
     }
