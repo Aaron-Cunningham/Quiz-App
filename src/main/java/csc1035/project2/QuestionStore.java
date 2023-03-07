@@ -63,7 +63,6 @@ public class QuestionStore {
     public void deleteQuestion() {
         // Print out the list of questions associated with the quiz_ID
         // Then select the questions that you would like to delete (maybe display the questionID with the question and then delete the question)
-        //
     }
 
 
