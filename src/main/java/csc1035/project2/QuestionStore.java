@@ -204,7 +204,7 @@ public class QuestionStore {
 
         } catch (HibernateException e) {
             //if error roll back
-            if(session!=null) session.getTransaction().rollback();
+            if(session!=null) session.getTransaction().rollback(); // if the session is null then roll back
             e.printStackTrace();
 
         } finally {
