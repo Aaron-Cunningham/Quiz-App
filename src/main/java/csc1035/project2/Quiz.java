@@ -1,7 +1,5 @@
 package csc1035.project2;
 
-import org.hibernate.Session;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +19,12 @@ public class Quiz {
     private String difficulty;
     @OneToMany(mappedBy = "quiz")
     private List<Question> questions;
+    @OneToMany(mappedBy = "quiz")
+    private List<MCQ> MSQ;
 
+    public void setMSQ(List<MCQ> MSQ) {
+        this.MSQ = MSQ;
+    }
 
     public Quiz(String topic, String name, String difficulty) {
         this.topic = topic;

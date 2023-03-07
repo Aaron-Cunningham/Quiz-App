@@ -21,7 +21,7 @@ public class IO {
                     "1: Add a quiz\n" +
                     "2: Add a question\n" +
                     "3: Delete a question\n" +
-                    "4: \n" +
+                    "4: Add a MCQ" +
                     "5: ");
 
             while (!sc.hasNextInt()){
@@ -41,7 +41,7 @@ public class IO {
                     QS.deleteQuestion();
                 }
                 case 4 -> {
-                    System.out.println("    ");
+                    QS.addMCQ();
                 }
                 case 5 -> {
                     System.out.println("     ");
