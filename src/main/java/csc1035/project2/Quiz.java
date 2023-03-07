@@ -6,7 +6,6 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
 @Entity
 @Table(name = "Quiz")
 public class Quiz {
@@ -28,7 +27,6 @@ public class Quiz {
         this.topic = topic;
         this.name = name;
         this.difficulty = difficulty;
-        this.ID = ID;
     }
 
     public Quiz() {
