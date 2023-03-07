@@ -193,10 +193,8 @@ public class QuestionStore {
             }
 
             // Otherwise, delete the question with the given ID
-            TypedQuery query1 = session.createQuery("delete from Question where ID = :id");
-            query1.setParameter("id", question_ID);
-            int result = query1.executeUpdate();
-            System.out.println(result + " question deleted.");
+            Question Qs = session.get(Question.class, question_ID);
+            session.delete(Qs);
 
             // Commit the transaction and close the session
             session.getTransaction().commit();
@@ -210,6 +208,7 @@ public class QuestionStore {
         } finally {
             //Close session
             assert session != null; // verifies variable session is not null
+            System.out.println("The SAQ has been successfully deleted... ");
             session.close();
 
         }
@@ -222,7 +221,6 @@ public class QuestionStore {
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-
 
             Scanner sc = new Scanner(System.in);
 
@@ -257,10 +255,8 @@ public class QuestionStore {
                 io.IOSystem();
             }
             // Otherwise, delete the MCQ with the given ID
-            TypedQuery query1 = session.createQuery("delete from MCQ where id = :id");
-            query1.setParameter("id", mcq_ID);
-            int result = query1.executeUpdate();
-            System.out.println(result + " MCQ deleted.");
+            MCQ mCq = session.get(MCQ.class,mcq_ID);
+            session.delete(mCq);
 
             // Commit the transaction and close the session
             session.getTransaction().commit();
@@ -274,6 +270,7 @@ public class QuestionStore {
         } finally {
             //Close session
             assert session != null; // verifies variable session is not null
+            System.out.println("The MCQ has been successfully deleted... ");
             session.close();
         }
     }
