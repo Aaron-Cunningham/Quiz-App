@@ -134,8 +134,8 @@ public class QuestionStore {
         System.out.println("Enter the question ID that you would like to delete (choose from the options provided below): ");
 
         // Get a list of existing quizIDs from the database
-        TypedQuery<Question> query3 = session.createQuery("SELECT ID,question FROM Question ", Question.class);
-        List<Question> questions = query3.getResultList();
+        TypedQuery<Question> query = session.createQuery("SELECT ID,question FROM Question ", Question.class);
+        List<Question> questions = query.getResultList();
 
         // Print a list of existing question ID and question (for question table)
         System.out.println("\nExisting questions ID and questions:");
@@ -157,18 +157,20 @@ public class QuestionStore {
         // If the question ID is not found, prompt the user with an error message
         if (!found) {
             System.out.println("Error: There is no question with ID " + question_ID);
-            return;
+            session.close();
+            io.IOSystem();
+        } else {
+            // Otherwise, delete the question with the given ID
+            TypedQuery<Question> query1 = session.createQuery("delete from Question where ID = :id", Question.class);
+            query1.setParameter("id", question_ID);
+            int result = query1.executeUpdate();
+            System.out.println(result + " question deleted.");
+
+            // Commit the transaction and close the session
+            session.getTransaction().commit();
+            session.close();
         }
 
-        // Otherwise, delete the question with the given ID
-        TypedQuery<Question> query4 = session.createQuery("delete from Question where ID = :id", Question.class);
-        query4.setParameter("id", question_ID);
-        int result = query4.executeUpdate();
-        System.out.println(result + " question deleted.");
-
-        // Commit the transaction and close the session
-        session.getTransaction().commit();
-        session.close();
     }
 
         // if the question_ID is matched then delete the question
