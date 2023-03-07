@@ -19,8 +19,8 @@ public class IO {
         do{
             System.out.println("Choose an option: \n" +
                     "1: Add a quiz\n" +
-                    "2: Add a question\n" +
-                    "3: Delete a question\n" +
+                    "2: Add a SAQ\n" +
+                    "3: Delete a SAQ\n" +
                     "4: Add a MCQ" +
                     "5: ");
 
@@ -35,7 +35,7 @@ public class IO {
                     qs.addQuiz();
                 }
                 case 2 -> {
-                    QS.addQuestion();
+                    QS.addSAQ();
                 }
                 case 3 -> {
                     QS.deleteQuestion();

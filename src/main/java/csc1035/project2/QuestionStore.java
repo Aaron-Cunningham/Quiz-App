@@ -8,9 +8,9 @@ import java.util.Scanner;
 
 public class QuestionStore {
 
-    public void addQuestion() {
+    public void addSAQ() {
 
-        IO io = new IO();
+        IO IO = new IO();
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
 
@@ -51,7 +51,7 @@ public class QuestionStore {
         if (quizList.isEmpty()) {
             System.out.println("\nError: Quiz with quizID " + quizID + " does not exist.");
             session.close();
-            io.IOSystem();
+            IO.IOSystem();
         } else {
             Question Q = new Question(question, category, answer, quizID);
 
