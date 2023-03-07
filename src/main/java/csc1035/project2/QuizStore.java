@@ -1,7 +1,7 @@
 package csc1035.project2;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import java.util.List;
 import java.util.Scanner;
 
@@ -29,9 +29,9 @@ public class QuizStore {
             //Makes the topic lower case
             name = name.toLowerCase();
             //Querying the database to check if name is already there
-            String hql = "FROM Quiz WHERE name = :name";
-            Query query = session.createQuery(hql);
+            TypedQuery<Quiz> query = session.createQuery("FROM Quiz WHERE name = :name", Quiz.class);
             query.setParameter("name", name);
+
             //A list to store the results of the query
             List<Quiz> results = query.getResultList();
             //If there is an item in the list it will return this
@@ -55,18 +55,11 @@ public class QuizStore {
             //if error roll back
             if(session!=null) session.getTransaction().rollback();
             e.printStackTrace();
-        }finally {
+        } finally {
             //Close session
             assert session != null;
             session.close();
         }
     }
 
-    public void deleteQuiz(){
-
-    }
-
-    public void updateQuiz(){
-
-    }
 }
