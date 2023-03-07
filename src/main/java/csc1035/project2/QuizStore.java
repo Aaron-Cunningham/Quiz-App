@@ -19,7 +19,7 @@ public class QuizStore {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         Scanner sc = new Scanner(System.in);
-        //Aasks user for nmae of the quiz
+        //Asks user for name of the quiz
         System.out.println("Enter the name of the quiz");
         String name = sc.nextLine();
         //Makes the topic lower case
