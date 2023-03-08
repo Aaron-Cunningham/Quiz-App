@@ -48,6 +48,15 @@ public class QuizStore {
             String difficulty = sc.nextLine();
             System.out.println("Enter ID");
             int ID = sc.nextInt();
+
+            TypedQuery<Quiz> queryID = session.createQuery("FROM Quiz WHERE ID = :ID");
+            queryID.setParameter("ID", ID);
+            List<Quiz> IDResults = queryID.getResultList();
+            if(IDResults.size() > 0){
+                System.err.println("This quiz ID already exists");
+                io.IOSystem();
+            }
+
             Quiz quiz = new Quiz(topic, name, difficulty, ID);
             //Saves the quiz
             session.save(quiz);
