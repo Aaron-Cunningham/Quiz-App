@@ -35,7 +35,6 @@ public class QuestionStore {
 
             System.out.println("\nEnter which of the following quizID's you would like to link this question with: ");
 
-            // Get a list of existing quizIDs from the database (tale Quiz)
             TypedQuery<Integer> query = session.createQuery("SELECT DISTINCT ID FROM Quiz ", Integer.class);
             List<Integer> quizIDs = query.getResultList();
 
@@ -287,5 +286,18 @@ public class QuestionStore {
             session.close();
         }
     }
+
+    public void updateSAQ() {
+        // Ask the user which question_ID with the question also displayed they would like to update
+        // After that display the row of that particular question_ID
+        // Ask what they would like to edit either the question, category or answer
+        // After update, ask user if they want to update anything else, otherwise return to the menu
+        // Display print method saying the question has been successfully updated...
+    }
+
+    public void updateMCQ() {
+
+    }
+
 
 }
