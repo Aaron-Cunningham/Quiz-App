@@ -114,7 +114,7 @@ public class QuestionStore {
             System.out.println("\nEnter which of the following quizID's you would like to link this question with: ");
 
             // Get a list of existing quizIDs from the database
-            TypedQuery<Integer> query = session.createQuery("SELECT DISTINCT  ID FROM Quiz ", Integer.class);
+            TypedQuery<Integer> query = session.createQuery("SELECT ID FROM Quiz ", Integer.class);
             List<Integer> quizIDs = query.getResultList();
 
             // Print a list of existing quizIDs
@@ -127,9 +127,9 @@ public class QuestionStore {
             int quizID = sc.nextInt();
 
             // Check if quizID exists in the database
-            TypedQuery<Question> query1 = session.createQuery("FROM Question WHERE quiz_id = :quiz_ID", Question.class);
+            TypedQuery<Quiz> query1 = session.createQuery("FROM Quiz WHERE ID = :quiz_ID", Quiz.class);
             query1.setParameter("quiz_ID", quizID);
-            List<Question> quizList = query1.getResultList();
+            List<Quiz> quizList = query1.getResultList();
 
             if (quizList.isEmpty()) {
                 System.out.println("\nError: Quiz with quizID " + quizID + " does not exist.");

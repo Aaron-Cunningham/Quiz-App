@@ -8,7 +8,6 @@ import java.util.List;
 @Table(name = "Quiz")
 public class Quiz {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column
     private int ID;
     @Column
@@ -26,10 +25,11 @@ public class Quiz {
         this.MSQ = MSQ;
     }
 
-    public Quiz(String topic, String name, String difficulty) {
+    public Quiz(String topic, String name, String difficulty, int ID) {
         this.topic = topic;
         this.name = name;
         this.difficulty = difficulty;
+        this.ID = ID;
     }
 
     public Quiz() {
