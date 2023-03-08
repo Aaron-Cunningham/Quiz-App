@@ -46,7 +46,9 @@ public class QuizStore {
             String topic = sc.nextLine();
             System.out.println("Enter the difficulty");
             String difficulty = sc.nextLine();
-            Quiz quiz = new Quiz(topic, name, difficulty);
+            System.out.println("Enter ID");
+            int ID = sc.nextInt();
+            Quiz quiz = new Quiz(topic, name, difficulty, ID);
             //Saves the quiz
             session.save(quiz);
             //Commits
