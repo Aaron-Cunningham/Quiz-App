@@ -100,6 +100,11 @@ public class QuestionStore {
         }
     }
 
+    /**
+     * Method for adding an MCQ to MCQ table
+     * - Takes the user input's for the following elements:
+     *      - (question, category, possible answer1, possible answer2, possible answer 3, actual answer)
+     */
     public void addMCQ() {
 
         IO io = new IO();
@@ -128,6 +133,12 @@ public class QuestionStore {
 
             System.out.println("\nEnter the actual answer: ");
             String actualAnswer = sc.nextLine();
+
+            // If statement ensuring that the actual answer matches either answer1, answer2 or answer 3
+            if (!actualAnswer.equals(answer1) || !actualAnswer.equals(answer2) || !actualAnswer.equals(answer3)) {
+                System.out.println("The actual answer does not match any of the entered answers (please try again..)");
+            }
+
             actualAnswer = actualAnswer.toLowerCase(); // such that the answer entered converts to lower case characters
 
             System.out.println("\nEnter which of the following quizID's you would like to link this question with: ");
