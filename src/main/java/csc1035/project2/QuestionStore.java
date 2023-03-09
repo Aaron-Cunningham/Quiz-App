@@ -158,9 +158,9 @@ public class QuestionStore {
             int quizID = sc.nextInt();
 
             // Check if quizID exists in the database
-            TypedQuery<Question> query1 = session.createQuery("FROM Question WHERE quiz_id = :quiz_ID", Question.class);
+            TypedQuery<Quiz> query1 = session.createQuery("FROM Quiz WHERE ID = :quiz_ID", Quiz.class);
             query1.setParameter("quiz_ID", quizID);
-            List<Question> quizList = query1.getResultList();
+            List<Quiz> quizList = query1.getResultList();
 
             // If the quiz List is empty, then there should be a prompted error... that the quizID does not exist
             if (quizList.isEmpty()) {
