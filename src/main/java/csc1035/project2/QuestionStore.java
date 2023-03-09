@@ -103,7 +103,8 @@ public class QuestionStore {
     /**
      * Method for adding an MCQ to MCQ table
      * - Takes the user input's for the following elements:
-     *      - (question, category, possible answer1, possible answer2, possible answer 3, actual answer)
+     *      - question, category, possible answer1, possible answer2, possible answer 3, actual answer
+     * - These are then assigned to the selected quiz ID entered by the user
      */
     public void addMCQ() {
 
@@ -161,13 +162,16 @@ public class QuestionStore {
             query1.setParameter("quiz_ID", quizID);
             List<Question> quizList = query1.getResultList();
 
+            // If the quiz List is empty, then there should be a prompted error... that the quizID does not exist
             if (quizList.isEmpty()) {
                 System.out.println("\nError: Quiz with quizID " + quizID + " does not exist.");
                 session.close();
                 io.IOSystem();
+
             } else {
                 MCQ Q = new MCQ(question, category, answer1, answer2, answer3, actualAnswer, quizID);
 
+                // Using the setters from the MCQ class to set the MCQs into the database
                 Q.setQuestion(question);
                 Q.setCategory(category);
                 Q.setAnswer1(answer1);
