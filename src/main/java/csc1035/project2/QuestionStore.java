@@ -28,22 +28,26 @@ public class QuestionStore {
 
             Scanner sc = new Scanner(System.in);
 
+            // Takes the input from the user for question
             System.out.println("\nEnter the question: ");
             String question = sc.nextLine();
             question = question.toLowerCase(); // such that the question entered converts to lower case characters
 
-            // The category can only be Maths, Architecture, Databases and Programming
+            // Takes the input from the user for the questions category
             System.out.println("\nEnter the category: ");
             String category = sc.nextLine();
 
+            // Takes the input from the user for the answer
             System.out.println("\nEnter the answer: ");
             String answer = sc.nextLine();
             answer = answer.toLowerCase(); // such that the answer entered converts to lower case characters
 
+
             System.out.println("\nEnter which of the following quizID's you would like to link this question with: ");
 
+            // HQL query for printing a unique ID from the Quiz class (such that the user can choose)
             TypedQuery<Integer> query = session.createQuery("SELECT DISTINCT ID FROM Quiz ", Integer.class);
-            List<Integer> quizIDs = query.getResultList();
+            List<Integer> quizIDs = query.getResultList(); // creating a list for the query
 
             // Print a list of existing quizIDs
             System.out.println("\nExisting quiz IDs:");
