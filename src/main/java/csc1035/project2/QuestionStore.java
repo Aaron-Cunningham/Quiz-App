@@ -10,6 +10,13 @@ import java.util.Scanner;
 
 public class QuestionStore {
 
+    /**
+     * Method for adding SAQs to database
+     * - Input question, category, answer
+     * - Assign it to an existing quiz ID
+     * - If typed quiz ID does not exist then prompt error
+     * - Otherwise successfully assign the SAQ to the Question table
+     */
     public void addSAQ() {
 
         IO IO = new IO();
@@ -52,32 +59,40 @@ public class QuestionStore {
             query1.setParameter("ID", quizID);
             List<Quiz> quizList = query1.getResultList();
 
+            // If statement such that if the quiz list is empty, then prompt an error that the quiz ID doesn't exist
             if (quizList.isEmpty()) {
                 System.out.println("\nError: Quiz with quizID " + quizID + " does not exist.");
-                session.close();
-                IO.IOSystem();
-            } else {
+                session.close(); // close the session
+                IO.IOSystem(); // print the IO system
+            }
+
+            else {
+                // Set a new question with the elements (question, category, answer, quizID used in Question class
                 Question Q = new Question(question, category, answer, quizID);
 
+                // Setting the question using the inputted elements
                 Q.setQuestion(question);
                 Q.setCategory(category);
                 Q.setAnswer(answer);
                 Q.setQuiz_id(quizID);
 
+                // Save and commit message
                 session.save(Q);
                 session.getTransaction().commit();
                 System.out.println("\nQuestion added successfully to quizID: " + quizID);
             }
+
             session.close();
+
         } catch (HibernateException e) {
-            //if error roll back
+            // if error roll back
             if (session != null) session.getTransaction().rollback(); // if the session is null then roll back
-            e.printStackTrace();
+            e.printStackTrace(); // handles the exception and errors
 
         } finally {
             //Close session
             assert session != null; // verifies variable session is not null
-            session.close();
+            session.close(); // close session
         }
     }
 
