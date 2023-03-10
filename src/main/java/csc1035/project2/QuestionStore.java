@@ -145,14 +145,17 @@ public class QuestionStore {
             System.out.println("\nEnter which of the following quizID's you would like to link this question with: ");
 
             // Get a list of existing quizIDs from the database
-            TypedQuery<Integer> query = session.createQuery("SELECT DISTINCT  ID FROM Quiz ", Integer.class);
-            List<Integer> quizIDs = query.getResultList();
+            TypedQuery<Object[]> query = session.createQuery("SELECT q.ID, q.name FROM Quiz q", Object[].class);
+            List<Object[]> quizIDs = query.getResultList();
+
 
             // Print a list of existing quizIDs
             System.out.println("\nExisting quiz IDs:");
-            for (Integer id : quizIDs) {
-                System.out.println(id);
+            System.out.println("\nExisting questions:");
+            for (Object[] quiz : quizIDs) {
+                System.out.println("ID: " + quiz[0] + ", name: " + quiz[1]);
             }
+
 
             // Asking the user to choose from the following quizID's
             int quizID = sc.nextInt();
