@@ -20,7 +20,7 @@ public class Question {
     private int quiz_id;
 
     @ManyToOne
-    @JoinColumn(name = "quiz_id", insertable = false, updatable = false, referencedColumnName = "ID", nullable = false)
+    @JoinColumn(name = "quiz_id", insertable = false, updatable = false)
     Quiz quiz;
 
     public Question() {
@@ -81,17 +81,5 @@ public class Question {
         this.category = category;
         this.answer = answer;
         this.quiz_id = quiz_id;
-    }
-
-    @Override
-    public String toString() {
-        return "Question{" +
-                "ID=" + ID +
-                ", question='" + question + '\'' +
-                ", category='" + category + '\'' +
-                ", answer='" + answer + '\'' +
-                ", quiz_id=" + quiz_id +
-                ", quiz=" + quiz +
-                '}';
     }
 }
