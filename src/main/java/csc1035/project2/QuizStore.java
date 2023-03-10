@@ -1,7 +1,10 @@
 package csc1035.project2;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -75,6 +78,31 @@ public class QuizStore {
 
     public void deleteQuiz(){
 
+        Session s = HibernateUtil.getSessionFactory().openSession();
+        try{
+            s.beginTransaction();
+            Scanner sc = new Scanner(System.in);
+
+            Query query = s.createQuery("SELECT q.ID, q.name FROM Quiz q");
+            List<Object[]> quizzes = query.getResultList();
+            System.out.println("Quizzes:");
+            for (Object[] q: quizzes) {
+                System.out.println("ID: " + q[0] + "\tName: " + q[1]);
+            }
+
+            System.out.println("\nPlease enter the ID of the quiz you would like to delete");
+            int quizID = sc.nextInt();
+            Quiz targetQuiz = s.get(Quiz.class, quizID);
+            System.out.println(targetQuiz);
+            s.delete(targetQuiz);
+            s.getTransaction().commit();
+        }
+        finally {
+            // Close session
+            assert s != null; // verifies variable session is not null
+            System.out.println("The SAQ has been successfully deleted... ");
+            s.close();
+        }
     }
 
 }
