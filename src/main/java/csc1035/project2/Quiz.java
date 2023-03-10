@@ -16,9 +16,9 @@ public class Quiz {
     private String name;
     @Column
     private String difficulty;
-    @OneToMany(mappedBy = "quiz")
+    @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL)
     private List<Question> questions;
-    @OneToMany(mappedBy = "quiz")
+    @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL)
     private List<MCQ> MSQ;
 
     public void setMSQ(List<MCQ> MSQ) {
