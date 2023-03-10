@@ -84,6 +84,8 @@ public class QuizStore {
             Scanner sc = new Scanner(System.in);
 
             Query query = s.createQuery("SELECT q.ID, q.name FROM Quiz q");
+
+
             List<Object[]> quizzes = query.getResultList();
             System.out.println("Quizzes:");
             for (Object[] q: quizzes) {
