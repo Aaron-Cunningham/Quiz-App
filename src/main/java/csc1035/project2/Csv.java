@@ -8,42 +8,54 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
-import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaQuery;
 
-public class Testing {
+public class Csv {
     public static void main(String[] args) {
+        save();
+    }
+    public static void save() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = session.beginTransaction();
+        CriteriaQuery<Question> criteriaQuery = session.getCriteriaBuilder().createQuery(Question.class);
+        criteriaQuery.from(Question.class);
+        List<Question> results = session.createQuery(criteriaQuery).getResultList();
+        System.out.println(results);
+        Scanner quizscan = null;
+        Scanner questionscan = null;
+        try {
+            // open csv files
+            File quizzes = new File("quizzes.csv");
+            File questions = new File("questions.csv");
+            quizscan = new Scanner(quizzes);
+            questionscan = new Scanner(questions);
+            System.out.println("Files found");
+        } catch (java.io.FileNotFoundException e) {
+            System.out.println("1 or more files not found!");
+        }
+        for (Object question : results) {
+            System.out.println("ball");
+            System.out.println(question);
+        }
 
-
-
-
-
-
-        // dont delete database, just check if empty
-
-
-
-
-
-
-
-
-
+    }
+    public static void load() {
 
         // begin session
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
 
         // delete all questions
-        ClearDatabase(session);
+        clearDatabase(session);
 
         // select all to test if database empty
-        Query query3 = session.createQuery("SELECT COUNT(*) FROM Question");
-        Query query4 = session.createQuery("SELECT COUNT(*) FROM Quiz");
-        Long count = (Long)query3.uniqueResult();
-        Long count2 = (Long)query4.uniqueResult();
+        Query questionQuery = session.createQuery("SELECT COUNT(*) FROM Question");
+        Query quizQuery = session.createQuery("SELECT COUNT(*) FROM Quiz");
+        Long count = (Long)questionQuery.uniqueResult();
+        Long count2 = (Long)quizQuery.uniqueResult();
         if ((count == 0)||(count2 == 0)) {
             // if not empty
-            ClearDatabase(session);
+            clearDatabase(session);
             Scanner quizscan = null;
             Scanner questionscan = null;
             try {
@@ -91,7 +103,7 @@ public class Testing {
             System.out.println("Database already populated");
         }
     }
-    public static void ClearDatabase(Session session) {
+    public static void clearDatabase(Session session) {
         Query query = session.createQuery("DELETE FROM Question");
         query.executeUpdate();
         Query query2 = session.createQuery("DELETE FROM Quiz");
