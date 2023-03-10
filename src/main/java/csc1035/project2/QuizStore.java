@@ -73,4 +73,8 @@ public class QuizStore {
         }
     }
 
+    public void deleteQuiz(){
+
+    }
+
 }
