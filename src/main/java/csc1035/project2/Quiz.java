@@ -76,5 +76,15 @@ public class Quiz {
         this.ID = ID;
     }
 
-
+    @Override
+    public String toString() {
+        return "Quiz{" +
+                "ID=" + ID +
+                ", topic='" + topic + '\'' +
+                ", name='" + name + '\'' +
+                ", difficulty='" + difficulty + '\'' +
+                ", questions=" + questions +
+                ", MSQ=" + MSQ +
+                '}';
+    }
 }
