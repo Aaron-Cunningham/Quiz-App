@@ -44,12 +44,12 @@ public class QuestionStore {
             answer = answer.toLowerCase(); // such that the answer entered converts to lower case characters
 
 
-            Query query = session.createQuery("SELECT q.ID, q.name FROM Quiz q");
+            Query query = session.createQuery("SELECT ID, name FROM Quiz");
 
 
             List<Object[]> quizzes = query.getResultList();
-            System.out.println("Enter ID of Quiz you wish to add question to");
-            for (Object[] q: quizzes) {
+            System.out.println("Enter ID of Quiz you wish to add question to: ");
+            for (Object[] q : quizzes) {
                 System.out.println("ID: " + q[0] + "\tName: " + q[1]);
             }
 
@@ -66,9 +66,7 @@ public class QuestionStore {
                 System.out.println("\nError: Quiz with quizID " + quizID + " does not exist.");
                 session.close(); // close the session
                 IO.IOSystem(); // print the IO system
-            }
-
-            else {
+            } else {
                 // Set a new question with the elements (question, category, answer, quizID used in Question class
                 Question Q = new Question(question, category, answer, quizID);
 
@@ -101,7 +99,7 @@ public class QuestionStore {
     /**
      * Method for adding an MCQ to MCQ table
      * - Takes the user input's for the following elements:
-     *      - question, category, possible answer1, possible answer2, possible answer 3, actual answer
+     * - question, category, possible answer1, possible answer2, possible answer 3, actual answer
      * - These are then assigned to the selected quiz ID entered by the user
      */
     public void addMCQ() {
@@ -200,7 +198,7 @@ public class QuestionStore {
         Session session = HibernateUtil.getSessionFactory().openSession();
 
         try {
-            session =  HibernateUtil.getSessionFactory().openSession();
+            session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
 
             Scanner sc = new Scanner(System.in);
@@ -245,7 +243,7 @@ public class QuestionStore {
 
         } catch (HibernateException e) {
             //if error roll back
-            if(session!=null) session.getTransaction().rollback(); // if the session is null then roll back
+            if (session != null) session.getTransaction().rollback(); // if the session is null then roll back
             e.printStackTrace();
 
         } finally {
@@ -298,16 +296,16 @@ public class QuestionStore {
                 io.IOSystem();
             }
             // Otherwise, delete the MCQ with the given ID
-            MCQ mCq = session.get(MCQ.class,mcq_ID);
+            MCQ mCq = session.get(MCQ.class, mcq_ID);
             session.delete(mCq);
 
             // Commit the transaction and close the session
             session.getTransaction().commit();
             session.close();
 
-        } catch (HibernateException e){
+        } catch (HibernateException e) {
             //if error roll back
-            if(session!=null) session.getTransaction().rollback(); // if the session is null then roll back
+            if (session != null) session.getTransaction().rollback(); // if the session is null then roll back
             e.printStackTrace();
 
         } finally {
@@ -319,11 +317,116 @@ public class QuestionStore {
     }
 
     public void updateSAQ() {
-        // Ask the user which question_ID with the question also displayed they would like to update
-        // After that display the row of that particular question_ID
-        // Ask what they would like to edit either the question, category or answer
-        // After update, ask user if they want to update anything else, otherwise return to the menu
-        // Display print method saying the question has been successfully updated...
+        IO io = new IO();
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try {
+            session.beginTransaction();
+            Scanner sc = new Scanner(System.in);
+            System.out.println("Enter the question ID, you would like to update from the following (choose from the options provided below): ");
+
+            // Get a list of existing question IDs from the database
+            TypedQuery<Object[]> query = session.createQuery("SELECT ID, question FROM Question", Object[].class);
+            List<Object[]> question = query.getResultList();
+
+            // Print a list of existing question ID and question (for question table)
+            System.out.println("\nExisting question ID and questions:");
+            for (Object[] q : question) {
+                System.out.println(Arrays.toString(q));
+            }
+
+            System.out.println("Please enter a valid question ID you would like to edit: ");
+            int qID = sc.nextInt();
+
+            // Check if the question ID is in the list of questions
+            boolean found = false;
+            for (Object[] qs : question) {
+                if ((int) qs[0] == qID) {
+                    found = true;
+                    break;
+                }
+            }
+
+            // If the question ID is not found, prompt the user with an error message
+            if (!found) {
+                System.out.println("Error: There is no question with ID " + qID);
+                session.close();
+                io.IOSystem();
+            }
+
+            Question row = session.get(Question.class, qID);
+
+            // Printing the inputted row
+            System.out.println("This is the row of the question ID you wanted to update: \n");
+            System.out.printf("[%d, %s, %s, %s, %d]%n", row.getID(), row.getQuestion(), row.getCategory(), row.getAnswer(), row.getQuiz_id());
+
+            int option;
+            do {
+                System.out.println("Choose an option on which element you would like to update from the above row displayed: \n"
+                        + "1: Update ID\n"
+                        + "2: Update Question\n"
+                        + "3: Update Category\n"
+                        + "4: Update Answer\n"
+                        + "5: Update Quiz ID\n");
+
+                while (!sc.hasNextInt()) {
+                    System.out.println("Only enter a number from 1-5");
+                    sc.next();
+                }
+                option = sc.nextInt();
+
+                switch (option) {
+                    case 1 -> {
+                        int newID = sc.nextInt();
+                        Question id = session.get(Question.class, newID);
+                        id.setID(newID);
+                        session.update(id);
+                        session.getTransaction().commit();
+                    }
+
+                    case 2 -> {
+                        String newQuestion = sc.nextLine();
+                        Question nQ = session.get(Question.class, newQuestion);
+                        nQ.setQuestion(newQuestion);
+                        session.update(nQ);
+                        session.getTransaction().commit();
+                    }
+                    case 3 -> {
+                        String newCategory = sc.nextLine();
+                        Question nC = session.get(Question.class, newCategory);
+                        nC.setCategory(newCategory);
+                        session.update(nC);
+                        session.getTransaction().commit();
+                    }
+                    case 4 -> {
+                        String newAnswer = sc.nextLine();
+                        Question nA = session.get(Question.class, newAnswer);
+                        nA.setAnswer(newAnswer);
+                        session.update(nA);
+                        session.getTransaction().commit();
+                    }
+                    case 5 -> {
+                        String newQuizID = sc.next();
+                        Question nQID = session.get(Question.class, newQuizID);
+                        nQID.setAnswer(newQuizID);
+                        session.update(nQID);
+                        session.getTransaction().commit();
+                    }
+                }
+                io.IOSystem();
+
+            } while (option !=0);
+
+            } catch (HibernateException e) {
+                //if error roll back
+                session.getTransaction().rollback(); // if the session is null then roll back
+                e.printStackTrace();
+
+            } finally {
+                //Close session
+                assert session != null; // verifies variable session is not null
+                System.out.println("The SAQ has been successfully deleted... ");
+                session.close();
+        }
     }
 
     public void updateMCQ() {
@@ -333,6 +436,5 @@ public class QuestionStore {
         // After update, ask the user if they want to updater anything else, otherwise return to the main menu
         // Display print method saying the question has been successfully updated...
     }
-
 
 }
