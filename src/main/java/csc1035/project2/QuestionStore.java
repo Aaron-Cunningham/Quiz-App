@@ -3,6 +3,7 @@ package csc1035.project2;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.util.Arrays;
 import java.util.List;
@@ -43,16 +44,13 @@ public class QuestionStore {
             answer = answer.toLowerCase(); // such that the answer entered converts to lower case characters
 
 
-            System.out.println("\nEnter which of the following quizID's you would like to link this question with: ");
+            Query query = session.createQuery("SELECT q.ID, q.name FROM Quiz q");
 
-            // HQL query for printing a unique ID from the Quiz class (such that the user can choose)
-            TypedQuery<Integer> query = session.createQuery("SELECT DISTINCT ID FROM Quiz ", Integer.class);
-            List<Integer> quizIDs = query.getResultList(); // creating a list for the query
 
-            // Print a list of existing quizIDs
-            System.out.println("\nExisting quiz IDs:");
-            for (Integer id : quizIDs) {
-                System.out.println(id);
+            List<Object[]> quizzes = query.getResultList();
+            System.out.println("Enter ID of Quiz you wish to add question to");
+            for (Object[] q: quizzes) {
+                System.out.println("ID: " + q[0] + "\tName: " + q[1]);
             }
 
             // Asking the user to choose from the following quizID's
