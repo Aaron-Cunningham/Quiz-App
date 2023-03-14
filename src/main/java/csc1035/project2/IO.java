@@ -12,8 +12,9 @@ public class IO {
 
         public void IOSystem(){
         Scanner sc = new Scanner(System.in);
-        QuizStore qs = new QuizStore();
-        QuestionStore QS = new QuestionStore();
+        QuizStore quizStore = new QuizStore();
+        Answer answer = new Answer();
+        QuestionStore questionStore = new QuestionStore();
 
         int option;
         do{
@@ -24,7 +25,8 @@ public class IO {
                     "4: Delete a SAQ\n" +
                     "5: Add a MCQ\n" +
                     "6: Delete a MCQ\n" +
-                    "7: Update a Quiz\n");
+                    "7: Update a Quiz\n" +
+                    "8: Answer a SAQ");
 
             while (!sc.hasNextInt()){
                 System.out.println("Only enter a number");
@@ -34,24 +36,28 @@ public class IO {
             option = sc.nextInt();
             switch(option){
                 case 1 -> {
-                    qs.addQuiz();
+                    quizStore.addQuiz();
                 }
                 case 2 -> {
-                    qs.deleteQuiz();
+                    quizStore.deleteQuiz();
                 }
                 case 3 -> {
-                    QS.addSAQ();
+                    questionStore.addSAQ();
                 }
                 case 4 -> {
-                    QS.deleteSAQ();
+                    questionStore.deleteSAQ();
                 }
                 case 5 -> {
-                    QS.addMCQ();
+                    questionStore.addMCQ();
                 }
-                case 6 -> QS.deleteMCQ();
-                default -> option = 0;
+                case 6 -> questionStore.deleteMCQ();
 
-                case 7 -> qs.updateQuiz();
+
+
+                case 7 -> quizStore.updateQuiz();
+
+                case 8 -> answer.answerSCQ();
+                default -> option = 0;
             }
             IOSystem();
 
