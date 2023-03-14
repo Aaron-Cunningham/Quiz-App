@@ -37,7 +37,7 @@ public class Answer {
 
         //Count which is initially set to 0
         int count = 0;
-        //For each loop to print out every question amtching ID
+        //For each loop to print out every question matching ID
         for (Question question : targetQuiz.getQuestions()){
             System.out.println(question.getQuestion());
             String userAnswer = sc.nextLine();
