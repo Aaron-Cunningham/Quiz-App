@@ -23,7 +23,8 @@ public class IO {
                     "3: Add a SAQ\n" +
                     "4: Delete a SAQ\n" +
                     "5: Add a MCQ\n" +
-                    "6: Delete a MCQ\n");
+                    "6: Delete a MCQ\n" +
+                    "7: Update a Quiz\n");
 
             while (!sc.hasNextInt()){
                 System.out.println("Only enter a number");
@@ -49,6 +50,8 @@ public class IO {
                 }
                 case 6 -> QS.deleteMCQ();
                 default -> option = 0;
+
+                case 7 -> qs.updateQuiz();
             }
             IOSystem();
 
