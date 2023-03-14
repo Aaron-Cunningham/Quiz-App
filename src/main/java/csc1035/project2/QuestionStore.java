@@ -121,24 +121,20 @@ public class QuestionStore {
             System.out.println("\nEnter the category: ");
             String category = sc.nextLine();
 
-            System.out.println("Enter possible answer");
-            String answer1 = sc.nextLine();
+            System.out.println("Enter a wrong answer");
+            String wrongAnswer1 = sc.nextLine();
 
-            System.out.println("Enter the next possible answer");
-            String answer2 = sc.nextLine();
+            System.out.println("Enter the next wrong answer");
+            String wrongAnswer2 = sc.nextLine();
 
-            System.out.println("Enter the final possible answer");
-            String answer3 = sc.nextLine();
+            System.out.println("Enter the final wrong answer");
+            String wrongAnswer3 = sc.nextLine();
 
             System.out.println("\nEnter the actual answer: ");
-            String actualAnswer = sc.nextLine();
+            String rightAnswer = sc.nextLine();
 
-            // If statement ensuring that the actual answer matches either answer1, answer2 or answer 3
-            if (!actualAnswer.equals(answer1) || !actualAnswer.equals(answer2) || !actualAnswer.equals(answer3)) {
-                System.out.println("The actual answer does not match any of the entered answers (please try again..)");
-            }
 
-            actualAnswer = actualAnswer.toLowerCase(); // such that the answer entered converts to lower case characters
+            rightAnswer = rightAnswer.toLowerCase(); // such that the answer entered converts to lower case characters
 
             System.out.println("\nEnter which of the following quizID's you would like to link this question with: ");
 
@@ -170,15 +166,15 @@ public class QuestionStore {
                 io.IOSystem();
 
             } else {
-                MCQ Q = new MCQ(question, category, answer1, answer2, answer3, actualAnswer, quizID);
+                MCQ Q = new MCQ(question, category, wrongAnswer1, wrongAnswer2, wrongAnswer3, rightAnswer, quizID);
 
                 // Using the setters from the MCQ class to set the MCQs into the database
                 Q.setQuestion(question);
                 Q.setCategory(category);
-                Q.setAnswer1(answer1);
-                Q.setAnswer2(answer2);
-                Q.setAnswer3(answer3);
-                Q.setActualAnswer(actualAnswer);
+                Q.setAnswer1(wrongAnswer1);
+                Q.setAnswer2(wrongAnswer2);
+                Q.setAnswer3(wrongAnswer3);
+                Q.setActualAnswer(rightAnswer);
                 Q.setQuiz_id(quizID);
 
                 session.save(Q);
