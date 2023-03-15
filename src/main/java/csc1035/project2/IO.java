@@ -57,7 +57,7 @@ public class IO {
 
                 case 7 -> quizStore.updateQuiz();
 
-                case 8 -> answer.answerSCQ();
+                case 8 -> answer.answerSAQ();
                 case 9 -> questionStore.updateSAQ();
                 default -> option = 0;
             }
