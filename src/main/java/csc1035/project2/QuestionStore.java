@@ -573,15 +573,5 @@ public class QuestionStore {
             session.close();
         }
     }
-
-
-
-
-    // Ask the user which MCQ_ID with the MCQ also displayed they would like to update
-        // After that display the row of that particular MCQ_ID
-        // Ask what they would like to edit either the ans1, ans2, ans3, MCQ, category, actual answer
-        // After update, ask the user if they want to updater anything else, otherwise return to the main menu
-        // Display print method saying the question has been successfully updated...
-    }
-
 }
+
