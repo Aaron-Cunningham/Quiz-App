@@ -434,7 +434,150 @@ public class QuestionStore {
     }
 
     public void updateMCQ() {
-        // Ask the user which MCQ_ID with the MCQ also displayed they would like to update
+        IO IO = new IO();
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        try {
+            session.beginTransaction();
+
+            Scanner sc = new Scanner(System.in);
+            System.out.println("Enter the question ID you would like to update from the following options:");
+
+            // Get a list of existing question IDs from the database
+            TypedQuery<Integer> query = session.createQuery("SELECT ID FROM MCQ ", Integer.class);
+            List<Integer> MCQIds = query.getResultList();
+
+            // Print a list of existing question IDs
+            System.out.println("\nExisting MCQ IDs:");
+            System.out.println(MCQIds);
+
+            System.out.println("Please enter a valid question ID you would like to edit: ");
+            int MCQid = sc.nextInt();
+
+            // Check if the question ID is in the list of questions
+            if (MCQIds.contains(MCQid)) {
+                System.out.println("Error: There is no question with ID " + MCQid);
+                return;
+            }
+
+            MCQ mcq = session.get(MCQ.class, MCQid);
+
+            // Printing the inputted row
+            System.out.println("This is the row of the MCQ ID you wanted to update: ");
+//            System.out.print("[%d, %s, %s, %s, %s, %s, s%, %d]%n", mcq.getID(), mcq.getQuestion(), mcq.getCategory(), mcq.getAnswer1(), mcq.getAnswer2(), mcq.getAnswer3(), mcq.getActualAnswer(), mcq.getQuiz_id());
+
+            int option;
+            do {
+                System.out.println("Choose an option on which element you would like to update from the above row displayed: \n"
+                        + "1: Update Question\n"
+                        + "2: Update Category\n"
+                        + "3: Update Answer1\n"
+                        + "4: Update Answer2\n"
+                        + "5: Update Answer3\n"
+                        + "6: Update Actual Answer\n"
+                        + "7: Update Quiz ID\n"
+                        + "0: Exit update menu");
+
+                while (!sc.hasNextInt()) {
+                    System.out.println("Please enter a valid option (1-5 or 0 to exit)");
+                    sc.next();
+                }
+                option = sc.nextInt();
+
+                switch (option) {
+                    case 1:
+                        System.out.println("Please enter a new question:");
+                        sc.nextLine(); // consume the newline character left by nextInt
+                        String newQuestion = sc.nextLine();
+                        mcq.setQuestion(newQuestion);
+                        break;
+
+                    case 2:
+                        System.out.println("Please enter a new category:");
+                        sc.nextLine(); // consume the newline character left by nextInt
+                        String newCategory = sc.nextLine();
+                        mcq.setCategory(newCategory);
+                        break;
+
+                    case 3:
+                        System.out.println("Please enter a new answer1:");
+                        sc.nextLine(); // consume the newline character left by nextInt
+                        String newAnswer1 = sc.nextLine();
+                        mcq.setAnswer1(newAnswer1);
+                        break;
+
+                    case 4:
+                        System.out.println("Please enter a new answer2:");
+                        sc.nextLine(); // consume the newline character left by nextInt
+                        String newAnswer2 = sc.nextLine();
+                        mcq.setAnswer2(newAnswer2);
+                        break;
+
+                    case 5:
+                        System.out.println("Please enter a new answer3:");
+                        sc.nextLine(); // consume the newline character left by nextInt
+                        String newAnswer3 = sc.nextLine();
+                        mcq.setAnswer3(newAnswer3);
+                        break;
+
+                    case 6:
+                        System.out.println("Please enter a new actual answer: ");
+                        sc.nextLine();
+                        String newActualAnswer = sc.nextLine();
+                        mcq.setActualAnswer(newActualAnswer);
+                        break;
+
+                    case 7:
+                        System.out.println("Please enter a new quiz ID:");
+                        int newQuizID = sc.nextInt();
+                        boolean quizExists = false;
+                        try {
+                            TypedQuery<Quiz> query1 = session.createQuery("FROM Quiz WHERE ID = :id", Quiz.class);
+                            query1.setParameter("id", newQuizID);
+                            List<Quiz> results = query1.getResultList();
+                            if (!results.isEmpty()) {
+                                quizExists = true;
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        if (quizExists) {
+                            mcq.setQuiz_id(newQuizID);
+                        } else {
+                            System.out.println("Invalid quiz ID");
+                        }
+                        break;
+
+                    case 0:
+                        break;
+
+                    default:
+                        System.out.println("Please enter a valid option (1-7 or 0 to exit)");
+                        break;
+                }
+
+                session.update(mcq);
+                session.getTransaction().commit();
+
+                IO.IOSystem();
+
+            } while (option != 0);
+
+        } catch (HibernateException e) {
+            //if error roll back
+            session.getTransaction().rollback(); // if the session is null then roll back
+            e.printStackTrace();
+
+        } finally {
+            //Close session
+            session.close();
+        }
+    }
+
+
+
+
+    // Ask the user which MCQ_ID with the MCQ also displayed they would like to update
         // After that display the row of that particular MCQ_ID
         // Ask what they would like to edit either the ans1, ans2, ans3, MCQ, category, actual answer
         // After update, ask the user if they want to updater anything else, otherwise return to the main menu
