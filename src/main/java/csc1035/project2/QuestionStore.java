@@ -389,7 +389,22 @@ public class QuestionStore {
                     case 4:
                         System.out.println("Please enter a new quiz ID:");
                         int newQuizID = sc.nextInt();
-                        question.setQuiz_id(newQuizID);
+                        boolean quizExists = false;
+                        try {
+                            TypedQuery<Quiz> query1 = session.createQuery("FROM Quiz WHERE ID = :id", Quiz.class);
+                            query1.setParameter("id", newQuizID);
+                            List<Quiz> results = query1.getResultList();
+                            if (!results.isEmpty()) {
+                                quizExists = true;
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        if (quizExists) {
+                            question.setQuiz_id(newQuizID);
+                        } else {
+                            System.out.println("Invalid quiz ID");
+                        }
                         break;
 
                     case 0:
