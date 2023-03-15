@@ -319,113 +319,102 @@ public class QuestionStore {
     public void updateSAQ() {
         IO io = new IO();
         Session session = HibernateUtil.getSessionFactory().openSession();
+
         try {
             session.beginTransaction();
+
             Scanner sc = new Scanner(System.in);
-            System.out.println("Enter the question ID, you would like to update from the following (choose from the options provided below): ");
+            System.out.println("Enter the question ID you would like to update from the following options:");
 
             // Get a list of existing question IDs from the database
-            TypedQuery<Object[]> query = session.createQuery("SELECT ID, question FROM Question", Object[].class);
-            List<Object[]> question = query.getResultList();
+            TypedQuery<Integer> query = session.createQuery("SELECT ID FROM Question", Integer.class);
+            List<Integer> questionIds = query.getResultList();
 
-            // Print a list of existing question ID and question (for question table)
-            System.out.println("\nExisting question ID and questions:");
-            for (Object[] q : question) {
-                System.out.println(Arrays.toString(q));
-            }
+            // Print a list of existing question IDs
+            System.out.println("\nExisting question IDs:");
+            System.out.println(questionIds);
 
             System.out.println("Please enter a valid question ID you would like to edit: ");
             int qID = sc.nextInt();
 
             // Check if the question ID is in the list of questions
-            boolean found = false;
-            for (Object[] qs : question) {
-                if ((int) qs[0] == qID) {
-                    found = true;
-                    break;
-                }
-            }
-
-            // If the question ID is not found, prompt the user with an error message
-            if (!found) {
+            if (!questionIds.contains(qID)) {
                 System.out.println("Error: There is no question with ID " + qID);
-                session.close();
-                io.IOSystem();
+                return;
             }
 
-            Question row = session.get(Question.class, qID);
+            Question question = session.get(Question.class, qID);
 
             // Printing the inputted row
-            System.out.println("This is the row of the question ID you wanted to update: \n");
-            System.out.printf("[%d, %s, %s, %s, %d]%n", row.getID(), row.getQuestion(), row.getCategory(), row.getAnswer(), row.getQuiz_id());
+            System.out.println("This is the row of the question ID you wanted to update: ");
+            System.out.printf("[%d, %s, %s, %s, %d]%n", question.getID(), question.getQuestion(), question.getCategory(), question.getAnswer(), question.getQuiz_id());
 
             int option;
             do {
                 System.out.println("Choose an option on which element you would like to update from the above row displayed: \n"
-                        + "1: Update ID\n"
-                        + "2: Update Question\n"
-                        + "3: Update Category\n"
-                        + "4: Update Answer\n"
-                        + "5: Update Quiz ID\n");
+                        + "1: Update Question\n"
+                        + "2: Update Category\n"
+                        + "3: Update Answer\n"
+                        + "4: Update Quiz ID\n"
+                        + "0: Exit update menu");
 
                 while (!sc.hasNextInt()) {
-                    System.out.println("Only enter a number from 1-5");
+                    System.out.println("Please enter a valid option (1-5 or 0 to exit)");
                     sc.next();
                 }
                 option = sc.nextInt();
 
                 switch (option) {
-                    case 1 -> {
-                        int newID = sc.nextInt();
-                        Question id = session.get(Question.class, newID);
-                        id.setID(newID);
-                        session.update(id);
-                        session.getTransaction().commit();
-                    }
-
-                    case 2 -> {
+                    case 1:
+                        System.out.println("Please enter a new question:");
+                        sc.nextLine(); // consume the newline character left by nextInt
                         String newQuestion = sc.nextLine();
-                        Question nQ = session.get(Question.class, newQuestion);
-                        nQ.setQuestion(newQuestion);
-                        session.update(nQ);
-                        session.getTransaction().commit();
-                    }
-                    case 3 -> {
+                        question.setQuestion(newQuestion);
+                        break;
+
+                    case 2:
+                        System.out.println("Please enter a new category:");
+                        sc.nextLine(); // consume the newline character left by nextInt
                         String newCategory = sc.nextLine();
-                        Question nC = session.get(Question.class, newCategory);
-                        nC.setCategory(newCategory);
-                        session.update(nC);
-                        session.getTransaction().commit();
-                    }
-                    case 4 -> {
+                        question.setCategory(newCategory);
+                        break;
+
+                    case 3:
+                        System.out.println("Please enter a new answer:");
+                        sc.nextLine(); // consume the newline character left by nextInt
                         String newAnswer = sc.nextLine();
-                        Question nA = session.get(Question.class, newAnswer);
-                        nA.setAnswer(newAnswer);
-                        session.update(nA);
-                        session.getTransaction().commit();
-                    }
-                    case 5 -> {
-                        String newQuizID = sc.next();
-                        Question nQID = session.get(Question.class, newQuizID);
-                        nQID.setAnswer(newQuizID);
-                        session.update(nQID);
-                        session.getTransaction().commit();
-                    }
+                        question.setAnswer(newAnswer);
+                        break;
+
+                    case 4:
+                        System.out.println("Please enter a new quiz ID:");
+                        int newQuizID = sc.nextInt();
+                        question.setQuiz_id(newQuizID);
+                        break;
+
+                    case 0:
+                        break;
+
+                    default:
+                        System.out.println("Please enter a valid option (1-5 or 0 to exit)");
+                        break;
                 }
+
+                session.update(question);
+                session.getTransaction().commit();
+
                 io.IOSystem();
 
-            } while (option !=0);
+            } while (option != 0);
 
-            } catch (HibernateException e) {
-                //if error roll back
-                session.getTransaction().rollback(); // if the session is null then roll back
-                e.printStackTrace();
+        } catch (HibernateException e) {
+            //if error roll back
+            session.getTransaction().rollback(); // if the session is null then roll back
+            e.printStackTrace();
 
-            } finally {
-                //Close session
-                assert session != null; // verifies variable session is not null
-                System.out.println("The SAQ has been successfully deleted... ");
-                session.close();
+        } finally {
+            //Close session
+            session.close();
         }
     }
 
