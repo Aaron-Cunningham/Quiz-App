@@ -30,7 +30,7 @@ public class QuestionStore {
             Scanner sc = new Scanner(System.in);
 
             // Takes the input from the user for question
-            System.out.println("\nEnter the question: ");
+            System.out.println("\nEnter the question (SAQ): ");
             String question = sc.nextLine();
             question = question.toLowerCase(); // such that the question entered converts to lower case characters
 
@@ -42,7 +42,6 @@ public class QuestionStore {
             System.out.println("\nEnter the answer: ");
             String answer = sc.nextLine();
             answer = answer.toLowerCase(); // such that the answer entered converts to lower case characters
-
 
             Query query = session.createQuery("SELECT ID, name FROM Quiz");
 
@@ -390,15 +389,12 @@ public class QuestionStore {
                         System.out.println("Please enter a new quiz ID:");
                         int newQuizID = sc.nextInt();
                         boolean quizExists = false;
-                        try {
-                            TypedQuery<Quiz> query1 = session.createQuery("FROM Quiz WHERE ID = :id", Quiz.class);
-                            query1.setParameter("id", newQuizID);
-                            List<Quiz> results = query1.getResultList();
-                            if (!results.isEmpty()) {
-                                quizExists = true;
-                            }
-                        } catch (Exception e) {
-                            e.printStackTrace();
+
+                        TypedQuery<Quiz> query1 = session.createQuery("FROM Quiz WHERE ID = :id", Quiz.class);
+                        query1.setParameter("id", newQuizID);
+                        List<Quiz> results = query1.getResultList();
+                        if (!results.isEmpty()) {
+                            quizExists = true;
                         }
                         if (quizExists) {
                             question.setQuiz_id(newQuizID);
@@ -531,15 +527,12 @@ public class QuestionStore {
                         System.out.println("Please enter a new quiz ID:");
                         int newQuizID = sc.nextInt();
                         boolean quizExists = false;
-                        try {
-                            TypedQuery<Quiz> query1 = session.createQuery("FROM Quiz WHERE ID = :id", Quiz.class);
-                            query1.setParameter("id", newQuizID);
-                            List<Quiz> results = query1.getResultList();
-                            if (!results.isEmpty()) {
-                                quizExists = true;
-                            }
-                        } catch (Exception e) {
-                            e.printStackTrace();
+
+                        TypedQuery<Quiz> query1 = session.createQuery("FROM Quiz WHERE ID = :id", Quiz.class);
+                        query1.setParameter("id", newQuizID);
+                        List<Quiz> results = query1.getResultList();
+                        if (!results.isEmpty()) {
+                            quizExists = true;
                         }
                         if (quizExists) {
                             mcq.setQuiz_id(newQuizID);
