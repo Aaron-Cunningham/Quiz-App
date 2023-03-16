@@ -450,6 +450,14 @@ public class QuestionStore {
         }
     }
 
+    /**
+     * Method for updating MCQ from Question table:
+     *  - Retrieves list of ID and questions from the MCQ table (give options for user to choose from)
+     *  - Asks user for which MCQ ID they would like to edit
+     *  - If all is correct, then program prints the entire row of the specified MCQ ID
+     *  - Then the user is asked what element they would like to update within the row
+     *  - Then there are different cases and options for updating the different elements within the question table
+     */
     public void updateMCQ() {
         IO IO = new IO();
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -461,7 +469,7 @@ public class QuestionStore {
             System.out.println("Enter the question ID you would like to update from the following options:");
 
             // Get a list of existing question IDs from the database
-            TypedQuery<Integer> query = session.createQuery("SELECT ID FROM MCQ ", Integer.class);
+            TypedQuery<Integer> query = session.createQuery("SELECT ID, question FROM MCQ ", Integer.class);
             List<Integer> MCQIds = query.getResultList();
 
             // Print a list of existing question IDs

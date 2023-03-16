@@ -158,6 +158,7 @@ public class QuizStore {
             e.printStackTrace();
 
         } finally {
+            assert session != null;
             session.close();
         }
 
