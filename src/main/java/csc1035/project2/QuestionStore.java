@@ -174,6 +174,7 @@ public class QuestionStore {
                 Q.setActualAnswer(rightAnswer);
                 Q.setQuiz_id(quizID);
 
+                // Saving session
                 session.save(Q);
                 session.getTransaction().commit();
                 System.out.println("\nQuestion added successfully to quizID: " + quizID);
@@ -192,6 +193,12 @@ public class QuestionStore {
         }
     }
 
+    /**
+     * Method for deleting SAQs from the Question table:
+     *  - Retrieve a list from the Question table for the QuestionID and question
+     *  - User input for choosing the QuestionID
+     *  - If the QuestionID is valid and within the database, then the program will delete the SAQ otherwise prompt an error
+     */
     public void deleteSAQ() {
         IO io = new IO();
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -254,6 +261,12 @@ public class QuestionStore {
         }
     }
 
+    /**
+     * Method for deleting MCQ from the MCQ table:
+     * - Retrieve a list from the Question table for the MCQ ID and question
+     * - User input for choosing the MCQ ID
+     * - If the MCQ ID is valid and within the database, then the program will delete the MCQ otherwise prompt an error
+     */
     public void deleteMCQ() {
         IO io = new IO();
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -315,6 +328,14 @@ public class QuestionStore {
         }
     }
 
+    /**
+     * Method for updating SAQ from Question table:
+     *  - Retrieves list of ID and questions from the Question table (give options for user to choose from)
+     *  - Asks user for which question ID they would like to edit
+     *  - If all is correct, then program prints the entire row of the specified question ID
+     *  - Then the user is asked what element they would like to update within the row
+     *  - Then there are different cases and options for updating the different elements within the question table
+     */
     public void updateSAQ() {
         IO io = new IO();
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -326,7 +347,7 @@ public class QuestionStore {
             System.out.println("Enter the question ID you would like to update from the following options:");
 
             // Get a list of existing question IDs from the database
-            TypedQuery<Integer> query = session.createQuery("SELECT ID FROM Question", Integer.class);
+            TypedQuery<Integer> query = session.createQuery("SELECT ID,question FROM Question", Integer.class);
             List<Integer> questionIds = query.getResultList();
 
             // Print a list of existing question IDs
