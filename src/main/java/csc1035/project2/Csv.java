@@ -1,5 +1,8 @@
 package csc1035.project2;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -11,32 +14,57 @@ import org.hibernate.query.Query;
 import javax.persistence.criteria.CriteriaQuery;
 
 public class Csv {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         save();
     }
-    public static void save() {
+    public static void save() throws FileNotFoundException {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
-        CriteriaQuery<Question> criteriaQuery = session.getCriteriaBuilder().createQuery(Question.class);
-        criteriaQuery.from(Question.class);
-        List<Question> results = session.createQuery(criteriaQuery).getResultList();
-        System.out.println(results);
-        Scanner quizscan = null;
-        Scanner questionscan = null;
-        try {
-            // open csv files
-            File quizzes = new File("quizzes.csv");
-            File questions = new File("questions.csv");
-            quizscan = new Scanner(quizzes);
-            questionscan = new Scanner(questions);
-            System.out.println("Files found");
-        } catch (java.io.FileNotFoundException e) {
-            System.out.println("1 or more files not found!");
+        CriteriaQuery<Question> criteriaQuery1 = session.getCriteriaBuilder().createQuery(Question.class);
+        criteriaQuery1.from(Question.class);
+        List<Question> questionResults = session.createQuery(criteriaQuery1).getResultList();
+        System.out.println(questionResults);
+        CriteriaQuery<Quiz> criteriaQuery2 = session.getCriteriaBuilder().createQuery(Quiz.class);
+        criteriaQuery2.from(Quiz.class);
+        List<Quiz> quizResults = session.createQuery(criteriaQuery2).getResultList();
+        System.out.println(quizResults);
+
+
+        for (Object obj : questionResults) {
+            Question question = (Question) obj;
+            System.out.println("Question: " + question.getQuestion());
+            System.out.println("Category: " + question.getCategory());
+            System.out.println("Answer: " + question.getAnswer());
         }
-        for (Object question : results) {
-            System.out.println("ball");
-            System.out.println(question);
+        for (Object obj : questionResults) {
+            Question question = (Question) obj;
+            System.out.println("Question: " + question.getQuestion());
+            System.out.println("Category: " + question.getCategory());
+            System.out.println("Answer: " + question.getAnswer());
         }
+
+
+        PrintWriter foo = new PrintWriter("questions.csv");
+        foo.close();
+        PrintWriter bar = new PrintWriter("quizzes.csv");
+        bar.close();
+        PrintWriter questionWriter = new PrintWriter(new FileOutputStream("questions.csv", true));
+        questionWriter.print("");
+        for (Object obj : questionResults) {
+            Question question = (Question) obj;
+            questionWriter.println(question.getQuestion() + "," + question.getCategory() + "," + question.getAnswer() + "," + question.getQuiz_id());
+        }
+        questionWriter.close();
+        PrintWriter quizWriter = new PrintWriter(new FileOutputStream("quizzes.csv", true));
+        quizWriter.print("");
+        for (Object obj : quizResults) {
+            Quiz quiz = (Quiz) obj;
+            quizWriter.println(quiz.getTopic() + "," + quiz.getName() + "," + quiz.getDifficulty() + "," + quiz.getId());
+        }
+        quizWriter.close();
+
+        tx.commit();
+        session.close();
 
     }
     public static void load() {
@@ -96,12 +124,12 @@ public class Csv {
             for (Question question : questionsList) {
                 session.save(question);
             }
-            tx.commit();
-            session.close();
         }
         else {
             System.out.println("Database already populated");
         }
+        tx.commit();
+        session.close();
     }
     public static void clearDatabase(Session session) {
         Query query = session.createQuery("DELETE FROM Question");
