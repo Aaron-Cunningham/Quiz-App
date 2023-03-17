@@ -76,17 +76,7 @@ public class Question {
         this.answer = answer;
     }
 
-    @Override
-    public String toString() {
-        return "Question{" +
-                "ID=" + ID +
-                ", question='" + question + '\'' +
-                ", category='" + category + '\'' +
-                ", answer='" + answer + '\'' +
-                ", quiz_id=" + quiz_id +
-                ", quiz=" + quiz +
-                '}';
-    }
+
 
     public Question(String question, String category, String answer, int quiz_id) {
         this.question = question;
