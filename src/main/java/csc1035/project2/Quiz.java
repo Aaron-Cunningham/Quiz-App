@@ -40,8 +40,9 @@ public class Quiz {
         return topic;
     }
 
-    public void setTopic(String topic) {
+    public String setTopic(String topic) {
         this.topic = topic;
+        return topic;
     }
 
     public List<Question> getQuestions() {
