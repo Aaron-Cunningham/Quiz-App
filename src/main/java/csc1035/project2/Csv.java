@@ -11,13 +11,11 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaQuery;
 
 
 public class Csv {
-    public static void main(String[] args) throws FileNotFoundException {
-        save();
-    }
     public static void save() throws FileNotFoundException {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
@@ -75,7 +73,7 @@ public class Csv {
         Transaction tx = session.beginTransaction();
 
         // delete all questions
-        clearDatabase(session);
+        ClearDatabase();
 
         // select all to test if database empty
         Query questionQuery = session.createQuery("SELECT COUNT(*) FROM Question");
@@ -84,7 +82,7 @@ public class Csv {
         Long count2 = (Long)quizQuery.uniqueResult();
         if ((count == 0)||(count2 == 0)) {
             // if not empty
-            clearDatabase(session);
+            ClearDatabase();
             Scanner quizscan = null;
             Scanner questionscan = null;
             try {
@@ -132,10 +130,19 @@ public class Csv {
         tx.commit();
         session.close();
     }
-    public static void clearDatabase(Session session) {
-        Query query = session.createQuery("DELETE FROM Question");
-        query.executeUpdate();
-        Query query2 = session.createQuery("DELETE FROM Quiz");
-        query2.executeUpdate();
+    public static void ClearDatabase() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = session.beginTransaction();
+
+        TypedQuery<Quiz> query = session.createQuery("FROM Quiz", Quiz.class);
+        List<Quiz> quizzes = query.getResultList();
+
+        for(Quiz quiz:quizzes){
+            session.delete(quiz);
+
+        }
+        tx.commit();
+        session.close();
+
     }
 }
