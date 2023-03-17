@@ -1,9 +1,8 @@
 package csc1035.project2;
-
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-
 import javax.persistence.Query;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -59,8 +58,62 @@ public class Answer {
 
     }
 
+    public void answerMCQ(){
+        Scanner sc = new Scanner(System.in);
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        try {
+            session.beginTransaction();
+
+            System.out.println("What quiz would you like to do?");
+            //Query prints out the name and ID of quiz
+            Query query = session.createQuery("SELECT q.ID, q.name FROM Quiz q");
+
+            //Stores query in a list
+            List<Object[]> quizzes = query.getResultList();
+            System.out.println("Quizzes:");
+            for (Object[] q : quizzes) {
+                System.out.println("ID: " + q[0] + "\tName: " + q[1]);
+            }
+
+            int quizID = sc.nextInt();
+            sc.nextLine();
+            Quiz targetQuiz = session.get(Quiz.class, quizID);
+            int count = 0;
+            //For each loop to print out every question matching ID
+            for (MCQ mcq : targetQuiz.getMCQ()) {
+                System.out.println("Question: " + mcq.getQuestion() + '\n' + '\n' + " Please type in the answer you think it is.");
+                System.out.println(mcq.answer3 + '\n' + mcq.actualAnswer + '\n' + mcq.answer1 + '\n' + mcq.answer2);
+                String userAnswer = sc.nextLine();
+                //Checks answer matches user input
+                if (userAnswer.equalsIgnoreCase(mcq.getActualAnswer())) {
+                    System.out.println();
+                    count++;
+                }
+            }
+            //Prints out the user score
+            System.out.println("You scored " + count);
+            session.close();
+        }catch (HibernateException e){
+            if(session!=null) session.getTransaction().rollback();
+            e.printStackTrace();
+        }
+
+    }
+
+
+
+
+
+
+
+
+
+
+
     public static void main(String[] args) {
         Answer a = new Answer();
-        a.answerSAQ();
+        a.answerMCQ();
     }
+
 }
