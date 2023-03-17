@@ -5,6 +5,7 @@ import org.hibernate.Session;
 
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -88,6 +89,8 @@ public class QuestionStore {
             if (session != null) session.getTransaction().rollback(); // if the session is null then roll back
             e.printStackTrace(); // handles the exception and errors
 
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
         } finally {
             //Close session
             assert session != null; // verifies variable session is not null
@@ -186,6 +189,8 @@ public class QuestionStore {
             if (session != null) session.getTransaction().rollback(); // if the session is null then roll back
             e.printStackTrace();
 
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
         } finally {
             //Close session
             assert session != null; // verifies variable session is not null
@@ -252,6 +257,8 @@ public class QuestionStore {
             if (session != null) session.getTransaction().rollback(); // if the session is null then roll back
             e.printStackTrace();
 
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
         } finally {
             //Close session
             assert session != null; // verifies variable session is not null
@@ -320,6 +327,8 @@ public class QuestionStore {
             if (session != null) session.getTransaction().rollback(); // if the session is null then roll back
             e.printStackTrace();
 
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
         } finally {
             //Close session
             assert session != null; // verifies variable session is not null
@@ -444,6 +453,8 @@ public class QuestionStore {
             session.getTransaction().rollback(); // if the session is null then roll back
             e.printStackTrace();
 
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
         } finally {
             //Close session
             session.close();
@@ -590,6 +601,8 @@ public class QuestionStore {
             session.getTransaction().rollback(); // if the session is null then roll back
             e.printStackTrace();
 
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
         } finally {
             //Close session
             session.close();
