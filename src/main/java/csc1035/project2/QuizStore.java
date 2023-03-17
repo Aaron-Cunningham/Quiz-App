@@ -4,6 +4,7 @@ import org.hibernate.Session;
 
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -69,6 +70,8 @@ public class QuizStore {
             //if error roll back
             if (session != null) session.getTransaction().rollback();
             e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
         } finally {
             //Close session
             assert session != null;
@@ -160,7 +163,9 @@ public class QuizStore {
         } finally {
             assert session != null;
             session.close();
+
         }
+
 
     }
     }
