@@ -1,7 +1,10 @@
 package csc1035.project2;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -15,7 +18,7 @@ public class QuizStore {
      * -If it doesn't exist it will ask for more details about the quiz, otherwise it will return to menu
      */
 
-    public void addQuiz(){
+    public void addQuiz() {
         IO io = new IO();
         Session session = HibernateUtil.getSessionFactory().openSession();
 
@@ -52,7 +55,7 @@ public class QuizStore {
             TypedQuery<Quiz> queryID = session.createQuery("FROM Quiz WHERE ID = :ID");
             queryID.setParameter("ID", ID);
             List<Quiz> IDResults = queryID.getResultList();
-            if(IDResults.size() > 0){
+            if (IDResults.size() > 0) {
                 System.err.println("This quiz ID already exists");
                 io.IOSystem();
             }
@@ -62,9 +65,9 @@ public class QuizStore {
             session.save(quiz);
             //Commits
             session.getTransaction().commit();
-        }catch (HibernateException e){
+        } catch (HibernateException e) {
             //if error roll back
-            if(session!=null) session.getTransaction().rollback();
+            if (session != null) session.getTransaction().rollback();
             e.printStackTrace();
         } finally {
             //Close session
@@ -73,8 +76,92 @@ public class QuizStore {
         }
     }
 
-    public void deleteQuiz(){
+    public void deleteQuiz() {
 
+        Session s = HibernateUtil.getSessionFactory().openSession();
+        try {
+            s.beginTransaction();
+            Scanner sc = new Scanner(System.in);
+
+            Query query = s.createQuery("SELECT q.ID, q.name FROM Quiz q");
+
+
+            List<Object[]> quizzes = query.getResultList();
+            System.out.println("Quizzes:");
+            for (Object[] q : quizzes) {
+                System.out.println("ID: " + q[0] + "\tName: " + q[1]);
+            }
+
+            System.out.println("\nPlease enter the ID of the quiz you would like to delete");
+            int quizID = sc.nextInt();
+            Quiz targetQuiz = s.get(Quiz.class, quizID);
+            System.out.println(targetQuiz);
+            s.delete(targetQuiz);
+            s.getTransaction().commit();
+        } finally {
+            // Close session
+            assert s != null; // verifies variable session is not null
+            System.out.println("The SAQ has been successfully deleted... ");
+            s.close();
+        }
     }
 
-}
+    public void updateQuiz() {
+
+        Session session = null;
+        Session s = HibernateUtil.getSessionFactory().openSession();
+
+
+        // Create a scanner object
+        Scanner scanner = new Scanner(System.in);
+
+        // Ask the user to enter the ID of the quiz they want to update
+        Query query = s.createQuery("SELECT q.ID, q.name, q.difficulty, q.topic FROM Quiz q");
+
+
+        List<Object[]> quizzes = query.getResultList();
+        System.out.println("Quizzes:");
+        for (Object[] q : quizzes) {
+            System.out.println("ID: " + q[0] + "\tName: " + q[1] + "\tDifficulty: " + q[2] +
+                    "\tTopic: " + q[3]);
+        }
+        System.out.println("Please give the ID of the quiz you want to update: ");
+        int questionUpdateID = scanner.nextInt();
+        scanner.nextLine(); // buffer
+
+
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            Quiz quiz = (session.get(Quiz.class, questionUpdateID));
+
+
+            System.out.println("Enter the new quiz name: ");
+            String newName = scanner.nextLine();
+            quiz.setName(newName);
+
+            System.out.println("Enter the new topic name: ");
+            String newTopic = scanner.nextLine();
+            quiz.setTopic(newTopic);
+
+            System.out.println("Enter the new difficulty level: ");
+            String newDifficulty = scanner.nextLine();
+            quiz.setDifficulty(newDifficulty);
+
+
+            session.update(quiz);
+            session.getTransaction().commit();
+
+
+        } catch (HibernateException e) {
+            if (session != null) session.getTransaction().rollback();
+            e.printStackTrace();
+
+        } finally {
+            assert session != null;
+            session.close();
+        }
+
+    }
+    }
+

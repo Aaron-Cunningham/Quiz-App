@@ -16,13 +16,13 @@ public class Quiz {
     private String name;
     @Column
     private String difficulty;
-    @OneToMany(mappedBy = "quiz")
+    @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL)
     private List<Question> questions;
-    @OneToMany(mappedBy = "quiz")
-    private List<MCQ> MSQ;
+    @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL)
+    private List<MCQ> MCQ;
 
-    public void setMSQ(List<MCQ> MSQ) {
-        this.MSQ = MSQ;
+    public void setMCQ(List<MCQ> MSQ) {
+        this.MCQ = MSQ;
     }
 
     public Quiz(String topic, String name, String difficulty, int ID) {
@@ -46,6 +46,10 @@ public class Quiz {
 
     public List<Question> getQuestions() {
         return questions;
+    }
+
+    public List<MCQ> getMCQ(){
+        return MCQ;
     }
 
     public void setQuestions(ArrayList<Question> questions) {
@@ -76,5 +80,15 @@ public class Quiz {
         this.ID = ID;
     }
 
-
+    @Override
+    public String toString() {
+        return "Quiz{" +
+                "ID=" + ID +
+                ", topic='" + topic + '\'' +
+                ", name='" + name + '\'' +
+                ", difficulty='" + difficulty + '\'' +
+                ", questions=" + questions +
+                ", MSQ=" + MCQ +
+                '}';
+    }
 }

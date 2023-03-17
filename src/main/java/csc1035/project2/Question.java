@@ -20,7 +20,7 @@ public class Question {
     private int quiz_id;
 
     @ManyToOne
-    @JoinColumn(name = "quiz_id", insertable = false, updatable = false, referencedColumnName = "ID", nullable = false)
+    @JoinColumn(name = "quiz_id", insertable = false, updatable = false)
     Quiz quiz;
 
     public Question() {
@@ -75,6 +75,8 @@ public class Question {
     public void setAnswer(String answer) {
         this.answer = answer;
     }
+
+
 
     public Question(String question, String category, String answer, int quiz_id) {
         this.question = question;
