@@ -1,16 +1,21 @@
 package csc1035.project2;
 
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class IO {
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
+        Csv.load();
         new IO().IOSystem();
 
     }
 
-        public void IOSystem(){
+        public void IOSystem() throws FileNotFoundException {
+
+        Csv.save();
+
         Scanner sc = new Scanner(System.in);
         QuizStore quizStore = new QuizStore();
         Answer answer = new Answer();
