@@ -20,21 +20,12 @@ public class Testing {
 
         // dont delete database, just check if empty
 
-
-
-
-
-
-
-
-
-
         // begin session
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
 
         // delete all questions
-        ClearDatabase(session);
+        ClearDatabase();
 
         // select all to test if database empty
         Query query3 = session.createQuery("SELECT COUNT(*) FROM Question");
@@ -43,7 +34,7 @@ public class Testing {
         Long count2 = (Long)query4.uniqueResult();
         if ((count == 0)||(count2 == 0)) {
             // if not empty
-            ClearDatabase(session);
+            ClearDatabase();
             Scanner quizscan = null;
             Scanner questionscan = null;
             try {
@@ -91,10 +82,19 @@ public class Testing {
             System.out.println("Database already populated");
         }
     }
-    public static void ClearDatabase(Session session) {
-        Query query = session.createQuery("DELETE FROM Question");
-        query.executeUpdate();
-        Query query2 = session.createQuery("DELETE FROM Quiz");
-        query2.executeUpdate();
+    public static void ClearDatabase() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = session.beginTransaction();
+
+        TypedQuery<Quiz> query = session.createQuery("FROM Quiz", Quiz.class);
+        List<Quiz> quizzes = query.getResultList();
+
+        for(Quiz quiz:quizzes){
+            session.delete(quiz);
+
+        }
+        tx.commit();
+        session.close();
+
     }
 }
