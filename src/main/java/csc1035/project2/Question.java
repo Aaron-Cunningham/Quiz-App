@@ -31,8 +31,9 @@ public class Question {
         return quiz;
     }
 
-    public void setQuiz_id(int quiz_id) {
+    public int setQuiz_id(int quiz_id) {
         this.quiz_id = quiz_id;
+        return quiz_id;
     }
 
     public int getID() {

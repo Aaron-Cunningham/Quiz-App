@@ -1,7 +1,6 @@
 package csc1035.project2;
 
 import org.junit.Before;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -58,6 +57,20 @@ class QuestionTest {
         String actual = testQuestion.setAnswer("8");
         assertEquals(expected, actual);
 
+    }
+
+    @Test
+    void getQuizID() {
+        int expected = 3;
+        int actual = testQuestion.getQuiz_id();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void setQuizID() {
+        int expected = 2;
+        int actual = testQuestion.setQuiz_id(2);
+        assertEquals(expected, actual);
     }
 
 }
