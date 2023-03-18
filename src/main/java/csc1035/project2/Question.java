@@ -55,25 +55,28 @@ public class Question {
         return question;
     }
 
-    public void setQuestion(String question) {
+    public String setQuestion(String question) {
         this.question = question;
         question = question.toLowerCase();
+        return question;
     }
 
     public String getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public String setCategory(String category) {
         this.category = category;
+        return category;
     }
 
     public String getAnswer() {
         return answer;
     }
 
-    public void setAnswer(String answer) {
+    public String setAnswer(String answer) {
         this.answer = answer;
+        return answer;
     }
 
 
