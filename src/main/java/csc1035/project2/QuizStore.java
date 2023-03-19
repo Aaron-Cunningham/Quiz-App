@@ -79,6 +79,12 @@ public class QuizStore {
         }
     }
 
+    /**
+     * Method for deleting a user selected quiz from the database
+     * - Retrieves and displays a list of quizzes with their quiz IDs
+     * - Takes user input to select ID of quiz to delete
+     * - Deleted selected quiz along with all questions belonging to said quiz
+     */
     public void deleteQuiz() {
 
         Session s = HibernateUtil.getSessionFactory().openSession();
@@ -86,15 +92,17 @@ public class QuizStore {
             s.beginTransaction();
             Scanner sc = new Scanner(System.in);
 
+            // creates a list from a query containing quiz ID's and names
             Query query = s.createQuery("SELECT q.ID, q.name FROM Quiz q");
-
-
             List<Object[]> quizzes = query.getResultList();
+
+            // prints the list of quizzes
             System.out.println("Quizzes:");
             for (Object[] q : quizzes) {
                 System.out.println("ID: " + q[0] + "\tName: " + q[1]);
             }
 
+            // Takes user input of a quiz ID and deletes quiz with the given ID
             System.out.println("\nPlease enter the ID of the quiz you would like to delete");
             int quizID = sc.nextInt();
             Quiz targetQuiz = s.get(Quiz.class, quizID);
