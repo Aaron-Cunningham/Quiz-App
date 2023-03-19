@@ -16,6 +16,7 @@ class MCQTest {
 
     @Test
     void getID() {
+        assertEquals(0, testMCQ.getID());
     }
 
     @Test
@@ -24,6 +25,7 @@ class MCQTest {
 
     @Test
     void getQuestion() {
+        assertEquals("What is 10+10?", testMCQ.getQuestion());
     }
 
     @Test
@@ -32,6 +34,7 @@ class MCQTest {
 
     @Test
     void getCategory() {
+        assertEquals("Fundamentals of Computing", testMCQ.getCategory());
     }
 
     @Test
@@ -40,6 +43,7 @@ class MCQTest {
 
     @Test
     void getAnswer1() {
+        assertEquals("5", testMCQ.getAnswer1());
     }
 
     @Test
@@ -48,6 +52,7 @@ class MCQTest {
 
     @Test
     void getAnswer2() {
+        assertEquals("10", testMCQ.getAnswer2());
     }
 
     @Test
@@ -56,6 +61,7 @@ class MCQTest {
 
     @Test
     void getAnswer3() {
+        assertEquals("25", testMCQ.getAnswer3());
     }
 
     @Test
@@ -64,6 +70,7 @@ class MCQTest {
 
     @Test
     void getActualAnswer() {
+        assertEquals("20", testMCQ.getActualAnswer());
     }
 
     @Test
@@ -72,6 +79,7 @@ class MCQTest {
 
     @Test
     void getQuiz_id() {
+        assertEquals(1, testMCQ.getQuiz_id());
     }
 
     @Test
@@ -80,6 +88,7 @@ class MCQTest {
 
     @Test
     void getQuiz() {
+        //assertEquals("Quiz", testMCQ.getQuiz());
     }
 
     @Test
