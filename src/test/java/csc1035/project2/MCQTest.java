@@ -21,6 +21,9 @@ class MCQTest {
 
     @Test
     void setID() {
+        int expected = 5;
+        testMCQ.setID(expected);
+        assertEquals(expected, testMCQ.getID());
     }
 
     @Test
@@ -30,6 +33,9 @@ class MCQTest {
 
     @Test
     void setQuestion() {
+        String expected = "What is 1000*1000?";
+        testMCQ.setQuestion(expected);
+        assertEquals(expected, testMCQ.getQuestion());
     }
 
     @Test
@@ -39,6 +45,10 @@ class MCQTest {
 
     @Test
     void setCategory() {
+        String expected = "Programming";
+        testMCQ.setCategory(expected);
+        assertEquals(expected, testMCQ.getCategory());
+
     }
 
     @Test
@@ -48,6 +58,9 @@ class MCQTest {
 
     @Test
     void setAnswer1() {
+        String expected = "1";
+        testMCQ.setAnswer1(expected);
+        assertEquals(expected, testMCQ.getAnswer1());
     }
 
     @Test
@@ -57,6 +70,9 @@ class MCQTest {
 
     @Test
     void setAnswer2() {
+        String expected = "1000";
+        testMCQ.setAnswer2(expected);
+        assertEquals(expected, testMCQ.getAnswer2());
     }
 
     @Test
@@ -66,6 +82,9 @@ class MCQTest {
 
     @Test
     void setAnswer3() {
+        String expected = "99999";
+        testMCQ.setAnswer3(expected);
+        assertEquals(expected, testMCQ.getAnswer3());
     }
 
     @Test
@@ -75,6 +94,9 @@ class MCQTest {
 
     @Test
     void setActualAnswer() {
+        String expected = "123";
+        testMCQ.setActualAnswer(expected);
+        assertEquals(expected, testMCQ.getActualAnswer());
     }
 
     @Test
@@ -84,14 +106,20 @@ class MCQTest {
 
     @Test
     void setQuiz_id() {
+        int expected = 9;
+        testMCQ.setQuiz_id(expected);
+        assertEquals(expected, testMCQ.getQuiz_id());
     }
-
+/*
     @Test
     void getQuiz() {
-        //assertEquals("Quiz", testMCQ.getQuiz());
+        //assertEquals(Quiz, testMCQ.getQuiz());
     }
 
     @Test
     void setQuiz() {
+
+
     }
+ */
 }
