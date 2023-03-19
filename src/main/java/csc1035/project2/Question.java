@@ -31,9 +31,8 @@ public class Question {
         return quiz;
     }
 
-    public int setQuiz_id(int quiz_id) {
+    public void setQuiz_id(int quiz_id) {
         this.quiz_id = quiz_id;
-        return quiz_id;
     }
 
     public int getID() {
@@ -56,28 +55,25 @@ public class Question {
         return question;
     }
 
-    public String setQuestion(String question) {
+    public void setQuestion(String question) {
         this.question = question;
         question = question.toLowerCase();
-        return question;
     }
 
     public String getCategory() {
         return category;
     }
 
-    public String setCategory(String category) {
+    public void setCategory(String category) {
         this.category = category;
-        return category;
     }
 
     public String getAnswer() {
         return answer;
     }
 
-    public String setAnswer(String answer) {
+    public void setAnswer(String answer) {
         this.answer = answer;
-        return answer;
     }
 
 
