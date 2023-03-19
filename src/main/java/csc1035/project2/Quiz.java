@@ -78,7 +78,7 @@ public class Quiz {
     }
 
     public void setId(int id) {
-        this.ID = ID;
+        this.ID = id;
     }
 
     @Override
