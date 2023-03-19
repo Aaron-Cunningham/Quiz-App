@@ -1,6 +1,6 @@
 package csc1035.project2;
 
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -11,7 +11,7 @@ class QuestionTest {
     private  Question testQuestion;
 
 
-    @Before
+    @BeforeEach
     public void setUp() {
         testQuestion = new Question("What is two plus two?", "Maths", "4", 3);
     }
