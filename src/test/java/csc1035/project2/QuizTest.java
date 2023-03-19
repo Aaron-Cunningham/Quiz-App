@@ -1,15 +1,17 @@
 package csc1035.project2;
 
 import org.junit.jupiter.api.Test;
-
+import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.*;
 
 class QuizTest {
 
-    Quiz testQuiz = new Quiz("Programming","CSC1036 Quiz","Medium",4);
-    private Quiz quiz;
+    private Quiz testQuiz;
 
-
+    @BeforeEach
+    void setUp() {
+        testQuiz = new Quiz("Programming","CSC1036 Quiz","Medium",4);
+    }
 
     @Test
     void getTopic() {
@@ -23,8 +25,6 @@ class QuizTest {
         String expected = "Maths";
         String actual = testQuiz.setTopic("Maths");
         assertEquals(expected, actual);
-
-
     }
 
     @Test

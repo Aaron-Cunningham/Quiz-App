@@ -6,9 +6,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MCQTest {
 
-    //declaring private MCQ variable for testing
+    // declaring private MCQ variable for testing
     private MCQ testMCQ;
 
+    // initialising MCQ variable
     @BeforeEach
     void setUp() {
         testMCQ = new MCQ("What is 10+10?", "Fundamentals of Computing", "5", "10", "25", "20", 1);
