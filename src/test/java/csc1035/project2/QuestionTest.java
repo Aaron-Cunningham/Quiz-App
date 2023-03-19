@@ -26,8 +26,8 @@ class QuestionTest {
     @Test
     void setQuestion() {
         String expected = "What is four plus four?";
-        String actual = testQuestion.setQuestion("What is four plus four?");
-        assertEquals(expected, actual);
+        testQuestion.setQuestion(expected);
+        assertEquals(expected, testQuestion.getQuestion());
     }
 
     @Test
@@ -40,8 +40,8 @@ class QuestionTest {
     @Test
     void setCategory() {
         String expected = "Programming";
-        String actual = testQuestion.setCategory("Programming");
-        assertEquals(expected, actual);
+        testQuestion.setCategory(expected);
+        assertEquals(expected, testQuestion.getCategory());
     }
 
     @Test
@@ -54,8 +54,8 @@ class QuestionTest {
     @Test
     void setAnswer() {
         String expected = "8";
-        String actual = testQuestion.setAnswer("8");
-        assertEquals(expected, actual);
+        testQuestion.setAnswer(expected);
+        assertEquals(expected, testQuestion.getAnswer());
 
     }
 
@@ -69,8 +69,8 @@ class QuestionTest {
     @Test
     void setQuizID() {
         int expected = 2;
-        int actual = testQuestion.setQuiz_id(2);
-        assertEquals(expected, actual);
+        testQuestion.setQuiz_id(expected);
+        assertEquals(expected, testQuestion.getQuiz_id());
     }
 
 }
