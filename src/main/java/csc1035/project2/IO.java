@@ -34,7 +34,8 @@ public class IO {
                     "8: Answer a SAQ\n" +
                     "9: Answer a MCQ\n" +
                     "10: Update an SAQ\n" +
-                    "11: Update an MCQ\n" );
+                    "11: Update an MCQ\n" +
+                    "12: Exit");
 
             while (!sc.hasNextInt()){
                 System.out.println("Only enter a number");
@@ -54,6 +55,7 @@ public class IO {
                 case 9 -> answer.answerMCQ();
                 case 10 -> questionStore.updateSAQ();
                 case 11 -> questionStore.updateMCQ();
+                case 12 -> System.exit(0);
                 default -> option = 0;
             }
             IOSystem();
