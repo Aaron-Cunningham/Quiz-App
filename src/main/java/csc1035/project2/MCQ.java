@@ -28,7 +28,7 @@ public class MCQ {
     private int quiz_id;
 
     @ManyToOne
-    @JoinColumn(name = "quiz_id", insertable = false, updatable = false, referencedColumnName = "ID", nullable = false)
+    @JoinColumn(name = "quiz_id", insertable = false, updatable = false)
     Quiz quiz;
 
 
