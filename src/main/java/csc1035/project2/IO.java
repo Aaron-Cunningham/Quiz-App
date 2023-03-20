@@ -14,7 +14,7 @@ public class IO {
 
         public void IOSystem() throws FileNotFoundException {
 
-        Csv.save();
+
 
         Scanner sc = new Scanner(System.in);
         QuizStore quizStore = new QuizStore();
