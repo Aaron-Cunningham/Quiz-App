@@ -459,7 +459,7 @@ public class QuestionStore {
 
                 session.update(question);
                 session.getTransaction().commit();
-
+                Csv.save();
                 io.IOSystem();
 
             } while (option != 0);
@@ -475,7 +475,7 @@ public class QuestionStore {
             //Close session
             session.close();
         }
-        Csv.save();
+
     }
 
     /**
@@ -620,7 +620,7 @@ public class QuestionStore {
 
                 session.update(mcq);
                 session.getTransaction().commit();
-
+                Csv.save();
                 IO.IOSystem();
 
             } while (option != 0);
@@ -635,8 +635,9 @@ public class QuestionStore {
         } finally {
             //Close session
             session.close();
+
         }
-        Csv.save();
+
     }
 }
 
