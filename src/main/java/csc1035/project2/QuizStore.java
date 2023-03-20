@@ -19,7 +19,7 @@ public class QuizStore {
      * -If it doesn't exist it will ask for more details about the quiz, otherwise it will return to menu
      */
 
-    public void addQuiz() {
+    public void addQuiz() throws FileNotFoundException {
         IO io = new IO();
         Session session = HibernateUtil.getSessionFactory().openSession();
 
@@ -77,6 +77,7 @@ public class QuizStore {
             assert session != null;
             session.close();
         }
+        Csv.save();
     }
 
     /**
@@ -85,7 +86,7 @@ public class QuizStore {
      * - Takes user input to select ID of quiz to delete
      * - Deleted selected quiz along with all questions belonging to said quiz
      */
-    public void deleteQuiz() {
+    public void deleteQuiz() throws FileNotFoundException {
 
         Session s = HibernateUtil.getSessionFactory().openSession();
         try {
@@ -115,9 +116,10 @@ public class QuizStore {
             System.out.println("The SAQ has been successfully deleted... ");
             s.close();
         }
+        Csv.save();
     }
 
-    public void updateQuiz() {
+    public void updateQuiz() throws FileNotFoundException {
 
         Session session = null;
         Session s = HibernateUtil.getSessionFactory().openSession();
@@ -173,8 +175,10 @@ public class QuizStore {
             session.close();
 
         }
+        Csv.save();
 
 
     }
-    }
+
+}
 

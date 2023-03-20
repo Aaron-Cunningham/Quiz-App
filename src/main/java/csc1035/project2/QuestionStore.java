@@ -19,7 +19,7 @@ public class QuestionStore {
      * - If typed quiz ID does not exist then prompt error
      * - Otherwise successfully assign the SAQ to the Question table
      */
-    public void addSAQ() {
+    public void addSAQ() throws FileNotFoundException {
 
         IO IO = new IO();
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -96,6 +96,7 @@ public class QuestionStore {
             assert session != null; // verifies variable session is not null
             session.close(); // close session
         }
+        Csv.save();
     }
 
     /**
@@ -104,7 +105,7 @@ public class QuestionStore {
      * - question, category, possible answer1, possible answer2, possible answer 3, actual answer
      * - These are then assigned to the selected quiz ID entered by the user
      */
-    public void addMCQ() {
+    public void addMCQ() throws FileNotFoundException {
 
         IO io = new IO();
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -196,6 +197,7 @@ public class QuestionStore {
             assert session != null; // verifies variable session is not null
             session.close();
         }
+        Csv.save();
     }
 
     /**
@@ -204,7 +206,7 @@ public class QuestionStore {
      *  - User input for choosing the QuestionID
      *  - If the QuestionID is valid and within the database, then the program will delete the SAQ otherwise prompt an error
      */
-    public void deleteSAQ() {
+    public void deleteSAQ() throws FileNotFoundException {
         IO io = new IO();
         Session session = HibernateUtil.getSessionFactory().openSession();
 
@@ -266,6 +268,7 @@ public class QuestionStore {
             session.close();
 
         }
+        Csv.save();
     }
 
     /**
@@ -274,7 +277,7 @@ public class QuestionStore {
      * - User input for choosing the MCQ ID
      * - If the MCQ ID is valid and within the database, then the program will delete the MCQ otherwise prompt an error
      */
-    public void deleteMCQ() {
+    public void deleteMCQ() throws FileNotFoundException {
         IO io = new IO();
         Session session = HibernateUtil.getSessionFactory().openSession();
 
@@ -335,6 +338,7 @@ public class QuestionStore {
             System.out.println("The MCQ has been successfully deleted... ");
             session.close();
         }
+        Csv.save();
     }
 
     /**
@@ -345,7 +349,7 @@ public class QuestionStore {
      *  - Then the user is asked what element they would like to update within the row
      *  - Then there are different cases and options for updating the different elements within the question table
      */
-    public void updateSAQ() {
+    public void updateSAQ() throws FileNotFoundException {
         IO io = new IO();
         Session session = HibernateUtil.getSessionFactory().openSession();
 
@@ -459,6 +463,7 @@ public class QuestionStore {
             //Close session
             session.close();
         }
+        Csv.save();
     }
 
     /**
@@ -469,7 +474,7 @@ public class QuestionStore {
      *  - Then the user is asked what element they would like to update within the row
      *  - Then there are different cases and options for updating the different elements within the question table
      */
-    public void updateMCQ() {
+    public void updateMCQ() throws FileNotFoundException {
         IO IO = new IO();
         Session session = HibernateUtil.getSessionFactory().openSession();
 
@@ -607,6 +612,7 @@ public class QuestionStore {
             //Close session
             session.close();
         }
+        Csv.save();
     }
 }
 
