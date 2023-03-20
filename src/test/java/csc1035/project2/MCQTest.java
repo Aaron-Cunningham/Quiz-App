@@ -111,16 +111,4 @@ class MCQTest {
         testMCQ.setQuiz_id(expected);
         assertEquals(expected, testMCQ.getQuiz_id());
     }
-/*
-    @Test
-    void getQuiz() {
-        //assertEquals(Quiz, testMCQ.getQuiz());
-    }
-
-    @Test
-    void setQuiz() {
-
-
-    }
- */
 }
