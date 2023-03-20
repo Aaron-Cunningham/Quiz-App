@@ -359,21 +359,33 @@ public class QuestionStore {
             Scanner sc = new Scanner(System.in);
             System.out.println("Enter the question ID you would like to update from the following options:");
 
-            // Get a list of existing question IDs from the database
-            TypedQuery<Integer> query = session.createQuery("SELECT ID,question FROM Question", Integer.class);
-            List<Integer> questionIds = query.getResultList();
+            // Get a list of existing questions from the database
+            TypedQuery<Object[]> query = session.createQuery("SELECT q.ID, q.question FROM Question q", Object[].class);
+            List<Object[]> questionIds = query.getResultList();
 
-            // Print a list of existing question IDs
-            System.out.println("\nExisting question IDs:");
-            System.out.println(questionIds);
+            // Print a list of existing question ID and question text
+            System.out.println("\nExisting questions:");
+            for (Object[] question : questionIds) {
+                System.out.println("ID: " + question[0] + ", question: " + question[1]);
+            }
 
             System.out.println("Please enter a valid question ID you would like to edit: ");
             int qID = sc.nextInt();
 
-            // Check if the question ID is in the list of questions
-            if (!questionIds.contains(qID)) {
-                System.out.println("Error: There is no question with ID " + qID);
-                return;
+            // Check if the MCQ ID is in the list of questions
+            boolean found = false;
+            for (Object[] mcq : questionIds) {
+                if ((int) mcq[0] == qID) {
+                    found = true;
+                    break;
+                }
+            }
+
+            // If the MCQ ID is not found, prompt the user with an error message
+            if (!found) {
+                System.out.println("Error: There is no MCQ  with ID " + qID);
+                session.close();
+                io.IOSystem();
             }
 
             Question question = session.get(Question.class, qID);
@@ -484,21 +496,33 @@ public class QuestionStore {
             Scanner sc = new Scanner(System.in);
             System.out.println("Enter the question ID you would like to update from the following options:");
 
-            // Get a list of existing question IDs from the database
-            TypedQuery<Integer> query = session.createQuery("SELECT ID, question FROM MCQ ", Integer.class);
-            List<Integer> MCQIds = query.getResultList();
+            // Get a list of existing questions from the database
+            TypedQuery<Object[]> query = session.createQuery("SELECT m.ID, m.question FROM MCQ m", Object[].class);
+            List<Object[]> MCQIds = query.getResultList();
 
-            // Print a list of existing question IDs
-            System.out.println("\nExisting MCQ IDs:");
-            System.out.println(MCQIds);
+            // Print a list of existing question ID and question text
+            System.out.println("\nExisting questions:");
+            for (Object[] question : MCQIds) {
+                System.out.println("ID: " + question[0] + ", question: " + question[1]);
+            }
 
             System.out.println("Please enter a valid question ID you would like to edit: ");
             int MCQid = sc.nextInt();
 
-            // Check if the question ID is in the list of questions
-            if (MCQIds.contains(MCQid)) {
-                System.out.println("Error: There is no question with ID " + MCQid);
-                return;
+            // Check if the MCQ ID is in the list of questions
+            boolean found = false;
+            for (Object[] mcq : MCQIds) {
+                if ((int) mcq[0] == MCQid) {
+                    found = true;
+                    break;
+                }
+            }
+
+            // If the MCQ ID is not found, prompt the user with an error message
+            if (!found) {
+                System.out.println("Error: There is no MCQ  with ID " + MCQid);
+                session.close();
+                IO.IOSystem();
             }
 
             MCQ mcq = session.get(MCQ.class, MCQid);
