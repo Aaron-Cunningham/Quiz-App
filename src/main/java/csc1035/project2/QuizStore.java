@@ -112,7 +112,6 @@ public class QuizStore {
         } finally {
             // Close session
             assert s != null; // verifies variable session is not null
-            System.out.println("The SAQ has been successfully deleted... ");
             s.close();
         }
     }
