@@ -27,8 +27,8 @@ class QuizTest {
     @Test
     void setTopic() {
         String expected = "Maths";
-        String actual = testQuiz.setTopic("Maths");
-        assertEquals(expected, actual);
+        testQuiz.setTopic("Maths");
+        assertEquals(expected, testQuiz.getTopic());
     }
 
     @Test
