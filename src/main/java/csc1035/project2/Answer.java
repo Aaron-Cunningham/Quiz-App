@@ -11,6 +11,7 @@ public class Answer {
     /**
      * This method uses a for each loop to iterate through each question and then asks the user to answer it.
      * If the answer matches the user input they score a point.
+     * @returns Score
      */
     public void answerSAQ(){
         //Sets Scanner as sc
@@ -58,6 +59,11 @@ public class Answer {
 
     }
 
+
+    /**
+     * This method prints out a question and 4 possible answers, the user needs to type in which
+     * answer they think is correct.
+     */
     public void answerMCQ(){
         Scanner sc = new Scanner(System.in);
         Session session = HibernateUtil.getSessionFactory().openSession();

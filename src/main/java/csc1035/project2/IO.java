@@ -5,14 +5,22 @@ import java.util.Scanner;
 
 public class IO {
 
-
+    /**
+     * Main method that runs the menu system.
+     * @param args
+     * @throws FileNotFoundException
+     */
     public static void main(String[] args) throws FileNotFoundException {
         Csv.load();
         new IO().IOSystem();
 
     }
 
-        public void IOSystem() throws FileNotFoundException {
+    /**
+     * This is the menu system, this allows for the user to choose a method and run it.
+     * @throws FileNotFoundException
+     */
+    public void IOSystem() throws FileNotFoundException {
 
 
 
