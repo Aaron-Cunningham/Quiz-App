@@ -1,6 +1,14 @@
 What is the square root of 25?,Maths,5,1
 What is the value of x in the equation 2x + 5 = 11?,Maths,3,1
 Simplify the expression 5a+2b-3a-4b,Maths,2a-2b,1
+What is meant by 'cardinality'?, Maths, Size of a set, 1
+Do duplicate elements count in a set?, Maths, No, 1
+What do tuples represent?, Maths, Objects, 1
+What do sets represent?, Maths, Collection of objects, 1
+What is the set of output elements of a function called?, Maths, Codomain, 1
+In a total function, can an element from the domain map to two elements in the codomain?, Maths, No, 1
+A recursive function is defined in terms of?, Maths, Itself, 1
+Can a result in the codomain of a surjective function remain unused?, Maths, No, 1
 What is this binary number 0001?,Architecture,1,2
 What is the main memory of a computer called?,Architecture,RAM,2
 What is the arithmetic logic unit responsible for?,Architecture,Calculations,2
