@@ -16,10 +16,6 @@ import javax.persistence.criteria.CriteriaQuery;
 
 
 public class Csv {
-
-    public static void main(String[] args) {
-        load();
-    }
     public static void save() throws FileNotFoundException {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
@@ -57,7 +53,7 @@ public class Csv {
         mcqWriter.print("");
         for (Object obj : mcQuestionResults) {
             MCQ mcq = (MCQ) obj;
-            mcqWriter.println(mcq.getQuestion() + "," + mcq.getCategory() + "," + mcq.getAnswer1() + "," + mcq.getAnswer2() + "," + mcq.getAnswer3() + "," + mcq.getActualAnswer() + "," + mcq.getID());
+            mcqWriter.println(mcq.getQuestion() + "," + mcq.getCategory() + "," + mcq.getAnswer1() + "," + mcq.getAnswer2() + "," + mcq.getAnswer3() + "," + mcq.getActualAnswer() + "," + mcq.getQuiz_id());
         }
         mcqWriter.close();
 
