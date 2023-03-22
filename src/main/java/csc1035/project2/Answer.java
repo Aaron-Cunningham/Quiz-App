@@ -89,7 +89,7 @@ public class Answer {
             //For each loop to print out every question matching ID
             for (MCQ mcq : targetQuiz.getMCQ()) {
                 System.out.println("Question: " + mcq.getQuestion() + '\n' + '\n' + " Please type in the answer you think it is.");
-                System.out.println(mcq.answer3 + '\n' + mcq.actualAnswer + '\n' + mcq.answer1 + '\n' + mcq.answer2);
+                System.out.println(mcq.answer3 + '\n' + mcq.answer1 + '\n' + mcq.answer2);
                 String userAnswer = sc.nextLine();
                 //Checks answer matches user input
                 if (userAnswer.equalsIgnoreCase(mcq.getActualAnswer())) {
