@@ -122,16 +122,16 @@ public class QuestionStore {
             System.out.println("\nEnter the category: ");
             String category = sc.nextLine();
 
-            System.out.println("Enter a wrong answer");
+            System.out.println("Enter answer 1");
             String wrongAnswer1 = sc.nextLine();
 
-            System.out.println("Enter the next wrong answer");
+            System.out.println("Enter answer 2");
             String wrongAnswer2 = sc.nextLine();
 
-            System.out.println("Enter the final wrong answer");
+            System.out.println("Enter answer 3");
             String wrongAnswer3 = sc.nextLine();
 
-            System.out.println("\nEnter the actual answer: ");
+            System.out.println("\nEnter the actual answer from one inputted above: ");
             String rightAnswer = sc.nextLine();
 
 
