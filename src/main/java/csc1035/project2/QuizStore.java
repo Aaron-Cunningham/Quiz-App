@@ -5,12 +5,10 @@ import org.hibernate.Session;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class QuizStore {
-
 
     /**
      * -Allows user to add a quiz to the database.
@@ -118,6 +116,12 @@ public class QuizStore {
         Csv.save();
     }
 
+    /**
+     * Method for updating information within the Quiz table in the database
+     * - Prints a list of ID, name, difficulty and topic from the Quiz table (query to retrieve information from database)
+     * - Takes an input from the user for a valid questionID the user (if the input is invalid, then throw an error)
+     * - Edit all the attributes
+     */
     public void updateQuiz() throws FileNotFoundException {
 
         Session session = null;
@@ -146,7 +150,6 @@ public class QuizStore {
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
             Quiz quiz = (session.get(Quiz.class, questionUpdateID));
-
 
             System.out.println("Enter the new quiz name: ");
             String newName = scanner.nextLine();
