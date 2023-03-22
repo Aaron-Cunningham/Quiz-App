@@ -3,14 +3,33 @@ Which of the following is the square root of 169?,Maths,13,16,15,13,1
 What is the solution to the equation x² - 4x + 3 = 0?,Maths,x=1,3,x=2,3,1
 What is the slope of the line passing through the points (2, 3) and (4, 5)?,Maths,-1,1,2,-1,1
 What is the area of a circle with radius 3?,Maths,3π,6π,9π,6π,1
+What kind of function has every result in its codomain used?,Maths,Surjective,Injective,Inverse,Surjective,1
+What can tuples represent?,Maths,Objects,Sets,Collection of objects,Objects,1
+Which of the following is used to describe a relation?,Maths,Reflexive,Symmetric,Both,Both,1
 What is the difference between RISC and CISC processors?,Architecture,RISC processors have fewer instructions and simpler instruction sets while CISC processors have more instructions and more complex instruction sets,RISC processors have more instructions and more complex instruction sets while CISC processors have fewer instructions and simpler instruction sets,RISC and CISC processors are the same and there is no difference between them,RISC processors have fewer instructions and simpler instruction sets while CISC processors have more instructions and more complex instruction sets,2
 What is pipelining in computer architecture?,Architecture,A technique used to reduce the amount of power consumed by processors,A technique used to improve the performance of processors by overlapping the execution of instructions,A technique used to improve the reliability of processors by duplicating hardware components,A technique used to improve the performance of processors by overlapping the execution of instructions,2
 What is the purpose of the MMU (Memory Management Unit) in a computer system?,Architecture,To manage the flow of data between the CPU and memory,To translate virtual memory addresses into physical memory addresses,To perform arithmetic and logical operations,To translate virtual memory addresses into physical memory addresses,2
 What is a branch prediction unit in a processor?,Architecture,A hardware component that predicts which branch of a conditional statement will be taken,A hardware component that predicts the amount of time it will take to execute an instruction,A hardware component that predicts the amount of power consumed by a processor,A hardware component that predicts which branch of a conditional statement will be taken,2
 What is the purpose of a clock signal in a digital circuit?,Architecture,To execute instructions,To store data,To synchronize the operation of different components,To synchronize the operation of different components,2
 What is the purpose of the instruction pipeline in a processor?,Architecture,To improve the performance of processors by overlapping the execution of instructions,To reduce the amount of power consumed by processors,To improve the reliability of processors by duplicating hardware components,To improve the performance of processors by overlapping the execution of instructions,2
+What is the purpose of the logic level in computer architecture?,Architecture,To make decisions and perform basic functionality,To store data in a sensible order ready to be translated,It is the hardware of the system and includes the circuits,To make decisions and perform basic functionality,2
+Which of the following is an advantage of an SSD?,Architecture,SSD tend to be cheaper than an HDD,SSD tend to be larger,SSD are more resilient to damage,SSD are more resilient to damage,2
+Which of the following gives information of the speed of a CPU?,Architecture,8GB,3.2GHz,i7,3.2GHz,2
+Pipelining can lead to errors an example is:,Architecture,Random,Branching,Invalid input,Branching,2
+There is an ALU that can perform 10 logical and arithmetic operations. What type of decoder is needed inside this ALU?,Architecture,4 to 16,16 to 4,8 to 3,4 to 16,2
 What is a database?,Databases,A collection of unrelated data stored in an unstructured format,A collection of related data stored in a structured format,A collection of files stored on a computer,A collection of related data stored in a structured format,3
 What is a primary key in a database?,Databases,A field that is used to sort data in a table,A field that uniquely identifies each record in a table,A field that is used to group data in a table,A field that uniquely identifies each record in a table,3
 What is the purpose of a foreign key in a database?,Databases,To group data in a table,To sort data in a table,To establish a link between two tables by referencing the primary key of one table in the other table,To establish a link between two tables by referencing the primary key of one table in the other table,3
 What is a relational database?,Databases,A database that stores data in a non-structured format,A database that stores data in a hierarchical format,A database that stores data in a structured format with relationships between tables,A database that stores data in a structured format with relationships between tables,3
 What is the purpose of a SQL (Structured Query Language) statement?,Databases,Both A and B,To update data in a database,To query a database for information,Both A and B,3
+What is the purpose of metadata in digital media?,Databases,To provide information about the media,To enhance the quality of the media,To compress the media for storage purposes,To provide information about the media,3
+What does a diamond represent in an E-R diagram?Databases,Entity set, Attribute,Relationship,Relationship,3
+Which normal form does a table need to be in order to be in third normal form?,Databases,First,Second,Neither,Second,3
+What is git?,Programming,A nickname for Github,A programming language,A version control system,A version control system,4
+Which of the following is the correct type of brackets used for a set in python?,Programming,[],{},(),{},4
+Which of the following is the correct method to turn a string into uppercase?,Programming,capitalize,capitalise,upper,4
+Which of the following variable declarations will throw an error?,Programming,16ounces,number,my_number,16ounces,4
+Which keyword is used to define a function in Python?,Programming,define,fun,def,def,4
+Which keyword is used to exit from a loop in Python?,Programming,break,continue,exit,break,4
+What is the purpose of the "elif" keyword in Python?,Programming,To terminate a loop,To add additional conditions to an 'if' statement,to catch an exception,To add additional conditions to an 'if' statement,4
+What is a function within a class deifinition called?,Programming,Function,Method,Class function,Method,4
