@@ -1,7 +1,6 @@
 What is the derivative of f(x) = 3x^2 - 2x + 1?,Maths,6x,3x^2-2x,6x+2,6x+2,1
 Which of the following is the square root of 169?,Maths,13,16,15,13,1
 What is the solution to the equation x² - 4x + 3 = 0?,Maths,x=1,3,x=2,3,1
-What is the slope of the line passing through the points (2, 3) and (4, 5)?,Maths,-1,1,2,-1,1
 What is the area of a circle with radius 3?,Maths,3π,6π,9π,6π,1
 What kind of function has every result in its codomain used?,Maths,Surjective,Injective,Inverse,Surjective,1
 What can tuples represent?,Maths,Objects,Sets,Collection of objects,Objects,1
@@ -23,13 +22,11 @@ What is the purpose of a foreign key in a database?,Databases,To group data in a
 What is a relational database?,Databases,A database that stores data in a non-structured format,A database that stores data in a hierarchical format,A database that stores data in a structured format with relationships between tables,A database that stores data in a structured format with relationships between tables,3
 What is the purpose of a SQL (Structured Query Language) statement?,Databases,Both A and B,To update data in a database,To query a database for information,Both A and B,3
 What is the purpose of metadata in digital media?,Databases,To provide information about the media,To enhance the quality of the media,To compress the media for storage purposes,To provide information about the media,3
-What does a diamond represent in an E-R diagram?Databases,Entity set, Attribute,Relationship,Relationship,3
 Which normal form does a table need to be in order to be in third normal form?,Databases,First,Second,Neither,Second,3
 What is git?,Programming,A nickname for Github,A programming language,A version control system,A version control system,4
 Which of the following is the correct type of brackets used for a set in python?,Programming,[],{},(),{},4
-Which of the following is the correct method to turn a string into uppercase?,Programming,capitalize,capitalise,upper,4
 Which of the following variable declarations will throw an error?,Programming,16ounces,number,my_number,16ounces,4
 Which keyword is used to define a function in Python?,Programming,define,fun,def,def,4
 Which keyword is used to exit from a loop in Python?,Programming,break,continue,exit,break,4
-What is the purpose of the "elif" keyword in Python?,Programming,To terminate a loop,To add additional conditions to an 'if' statement,to catch an exception,To add additional conditions to an 'if' statement,4
+What is the purpose of the elif keyword in Python?,Programming,To terminate a loop,To add additional conditions to an if statement,to catch an exception,To add additional conditions to an 'if' statement,4
 What is a function within a class deifinition called?,Programming,Function,Method,Class function,Method,4

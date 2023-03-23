@@ -12,14 +12,13 @@ Can a result in the codomain of a surjective function remain unused?,Maths,No,1
 What is this binary number 0001?,Architecture,1,2
 What is the main memory of a computer called?,Architecture,RAM,2
 What is the arithmetic logic unit responsible for?,Architecture,Calculations,2
-What does the acronym CPU stand for? ,Architecture,Central Processing Unit,2
+What does the acronym CPU stand for?,Architecture,Central Processing Unit,2
 What does the acronym ALU stand for?,Architecture,Arithmetic Logical Unit,2
 Where are instructions fetched from?,Architecture,Memory,2
 In a 4-to-1 multiplexer where the output is selected among from a choice of 4 inputs. How many inputs does the multiplexer have?,Architecture,6,2
 Where can the decoder be seen?,Architecture,Instruction Cycle,2
 What are the logic circuits whose outputs at any instant of time depend only on the present input but also on the past outputs called?,Architecture,Sequential circuits,2
 When building a PC what connects everything together?,Architecture,Motherboard,2
-What would the output be for a XNOR gate if the input is A) 1  B)1?,Architecture,1,2
 What does DBMS stand for?,Databases,Database Management System,3
 What type of database stores data in tables?,Databases,Relational,3
 What is the process of finding specific data in a database called?,Databases,Querying,3
@@ -30,14 +29,12 @@ What is an association among several entities called?,Databases,Relationship,3
 Can a table be in third normal form if there are multi-valued fields?,Databases,No,3
 What is 'data about data' called?,Databases,Metadata,3
 Is SQL case-sensitive with regards to keywords?,Databases,No,3
-Which columns does 'SELECT *' select?,Databases,All,3
+Which columns does SELECT * select?,Databases,All,3
 What is the most popular programming language as of 2023,Programming,Python,4
 What is the process of finding and fixing errors in code called?,Programming,Debugging,4
 What is the term used to describe a piece of reusable code?,Programming,Function,4
 What is the act of converting source code into machine-readable code called?,Programming,Compiling,4
-How is a new line represented in a string?,Programming,\n,4
-Python file names traditionally end in what characters after a period?Programming,py,4
-Let my_list be the list ["Python", "is", "great"]. What is the length of my_list?,Programming,3,4
+Python file names traditionally end in what characters after a period?,Programming,py,4
 What does OOP stand for?,Programming,Object Oriented Programming,4
 How many constructors can a python class have?,Programming,1,4
 What does SDLC stand for?,Programming,Software Development Life Cycle,4
