@@ -122,4 +122,11 @@ public class Question {
         this.answer = answer;
         this.quiz_id = quiz_id;
     }
+
+    @Override
+    public String toString() {
+        return
+                "Question: " + question + '\'' +
+                "Answer: " + answer + '\'';
+    }
 }

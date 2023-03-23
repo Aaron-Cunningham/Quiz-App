@@ -118,4 +118,12 @@ public class MCQ {
     public MCQ() {
 
     }
+
+    @Override
+    public String toString() {
+        return
+                "Question: " + question + '\'' +
+                "Category: " + category + '\'' +
+                "Correct Answer: " + actualAnswer + '\'';
+    }
 }
