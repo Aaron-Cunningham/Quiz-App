@@ -20,4 +20,4 @@ Assumptions
 2) When using a update, delete, and create methods, the CSV is updated along with the Database
 3) When first running the IO the data is overwritten and updated within the databases from whatever is stored on the CSV files, this is a safety check in case of the database loosing data
 4) The user is required to manually type in the answers when answering questions, or they can copy and paste the answer from terminal
-5) When adding a MCQ, the program will ask you to input 4 answers, 2 of the answers will be wrong answers and the 1 will be the right one. On the final input you re type in the right answer.
+5) When adding a MCQ, the program will ask you to input 4 answers, 2 of the answers will be wrong answers and the 1 will be the right one. On the final input you re-type in the correct answer.
