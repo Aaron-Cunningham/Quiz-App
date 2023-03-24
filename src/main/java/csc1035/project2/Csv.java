@@ -118,7 +118,7 @@ public class Csv {
 
         while (true) {
             assert questionscan != null;
-            // while there is still more csv quizzes
+            // while there is still more csv questions
             if (!questionscan.hasNextLine()) break;
             List<String> arguments = Arrays.asList(questionscan.nextLine().split(","));
             // split csv
@@ -128,7 +128,7 @@ public class Csv {
 
         while (true) {
             assert mcquestionscan != null;
-            // while there is still more csv quizzes
+            // while there is still more csv multiple choice quizzes
             if (!mcquestionscan.hasNextLine()) break;
             List<String> arguments = Arrays.asList(mcquestionscan.nextLine().split(","));
             // split csv
