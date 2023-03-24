@@ -22,9 +22,8 @@ public class IO {
      */
     public void IOSystem() throws FileNotFoundException {
 
-
-
         Scanner sc = new Scanner(System.in);
+        // start new scanner
         QuizStore quizStore = new QuizStore();
         Answer answer = new Answer();
         QuestionStore questionStore = new QuestionStore();
