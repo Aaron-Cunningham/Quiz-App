@@ -32,7 +32,16 @@ public class MCQ {
     Quiz quiz;
 
 
-
+    /**
+     * This contrsutor is representing a MCQ object
+     * @param question - The question been asked
+     * @param category - The category the question is related to
+     * @param answer1 - Possible answer 1
+     * @param answer2 - Possible answer 2
+     * @param answer3 - Possible answer 3
+     * @param actualAnswer - This is one of the possible answers
+     * @param quiz_id - The Quiz the question is connected to
+     */
     public MCQ(String question, String category, String answer1, String answer2, String answer3, String actualAnswer, int quiz_id) {
         this.question = question;
         this.category = category;
@@ -119,6 +128,11 @@ public class MCQ {
 
     }
 
+
+    /**
+     * This method prints out the MCQ in this following format
+     * @return
+     */
     @Override
     public String toString() {
         return
