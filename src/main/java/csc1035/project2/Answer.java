@@ -2,6 +2,7 @@ package csc1035.project2;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import javax.persistence.Query;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
@@ -14,6 +15,9 @@ public class Answer {
      * @returns Score
      */
     public void answerSAQ(){
+        List<Question> correct = new ArrayList<>();
+        List<Question> incorrect = new ArrayList<>();
+
         //Sets Scanner as sc
         Scanner sc = new Scanner(System.in);
         //Open hibernate session
@@ -47,10 +51,20 @@ public class Answer {
                 if (userAnswer.equalsIgnoreCase(question.getAnswer())) {
                     System.out.println();
                     count++;
+                    correct.add(question);
+                }else {
+                    incorrect.add(question);
                 }
             }
             //Prints out the user score
+            System.out.println("Correct answers " + correct);
+            System.out.println("Incorrect answers " + incorrect);
             System.out.println("You scored " + count);
+
+            correct.clear();
+            incorrect.clear();
+
+
             session.close();
         }catch (HibernateException e){
             if(session!=null) session.getTransaction().rollback();
@@ -65,6 +79,8 @@ public class Answer {
      * answer they think is correct.
      */
     public void answerMCQ(){
+        List<MCQ> correct = new ArrayList<>();
+        List<MCQ> incorrect = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
         Session session = HibernateUtil.getSessionFactory().openSession();
 
@@ -95,10 +111,19 @@ public class Answer {
                 if (userAnswer.equalsIgnoreCase(mcq.getActualAnswer())) {
                     System.out.println();
                     count++;
+                    correct.add(mcq);
+
+                }else {
+                    incorrect.add(mcq);
                 }
             }
             //Prints out the user score
+            System.out.println("Correct answers " + correct);
+            System.out.println("Incorrect answers " + incorrect);
             System.out.println("You scored " + count);
+
+            correct.clear();
+            incorrect.clear();
             session.close();
         }catch (HibernateException e){
             if(session!=null) session.getTransaction().rollback();

@@ -16,4 +16,5 @@ Getting started with the Quiz App
 
 Assumptions
 ===========
-1) 
+1) Answers can be written in either upper/lower case
+2) 
