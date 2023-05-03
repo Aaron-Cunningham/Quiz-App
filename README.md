@@ -1,3 +1,20 @@
+---
+Title: Quiz App
+Author: 
+
+Aaron Cunningham
+
+Josh Simpson
+
+Polyvios Antoniou
+
+Ritvik Verma 
+
+Luke Williamson
+
+---
+
+
 Quiz app
 ===================
 This app allows a user to create Quizzes, single answer questions, and multiple answer questions. Once the user has added their questions, they can then proceed to practice the 
