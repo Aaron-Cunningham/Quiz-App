@@ -1,17 +1,6 @@
 ---
 Title: Quiz App
-Author: 
-
-Aaron Cunningham
-
-Josh Simpson
-
-Polyvios Antoniou
-
-Ritvik Verma 
-
-Luke Williamson
-
+Author: Aaron Cunningham, Josh Simpson, Polyvios Antoniou, Ritvik Verma, Luke Williamson
 ---
 
 
